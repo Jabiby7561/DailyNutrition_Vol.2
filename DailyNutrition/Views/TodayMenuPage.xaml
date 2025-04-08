@@ -4,6 +4,13 @@
              x:Class="DailyNutrition.Views.TodayMenuPage"
              Title="TodayMenuPage">
     <VerticalStackLayout>
+        <ScrollView HorizontalOptions="Center"
+                    Margin="20">
+            <Label Text="ScrollView Test"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center" />
+        </ScrollView>
+        
         <Label 
             Text="This is Today Menu Page"
             VerticalOptions="Center" 
