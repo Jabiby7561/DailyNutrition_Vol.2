@@ -1,3 +1,2 @@
 # DailyNutrition
-CS356 Dotnet MAUI Project
-Year3 Semester2
+CS356 Dotnet MAUI Project\nYear3 Semester2
