@@ -9,6 +9,9 @@
             <Label Text="ScrollView Test 2"
                    VerticalOptions="Center" 
                    HorizontalOptions="Center" />
+            <Label Text="ScrollView Test"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center" />
         </ScrollView>
         
         <Label 
