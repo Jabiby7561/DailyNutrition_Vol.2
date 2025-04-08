@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:DailyNutrition"
+            xmlns:views="clr-namespace:DailyNutrition.Views"
+            xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            x:Class="DailyNutrition.Views.TabSimplePage"
+            Title="TabSimplePage">
+    
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem x:Name="btnProfileSetting"
+                     Text="+">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="AwesomeSoild"
+                                 Glyph="&#xf4ff;"
+                                 Size="24"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </TabbedPage.ToolbarItems>
+
+    <NavigationPage Title="วันนี้กินอะไร">
+        <x:Arguments>
+            <views:TodayMenuPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="สรุปผล">
+        <x:Arguments>
+            <views:ConcludePage/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="เพิ่มเมนู">
+        <x:Arguments>
+            <views:AddMenuPage/>
+        </x:Arguments>
+    </NavigationPage>
+    
+</TabbedPage>
