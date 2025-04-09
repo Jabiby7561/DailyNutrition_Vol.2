@@ -31,7 +31,7 @@
         </x:Arguments>
     </NavigationPage>
 
-    <NavigationPage Title="เพิ่มเมนู">
+    <NavigationPage Title="เพิ่มหรือแก้ไขเมนู">
         <x:Arguments>
             <views:AddMenuPage/>
         </x:Arguments>
