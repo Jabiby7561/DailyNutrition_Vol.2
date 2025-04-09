@@ -6,7 +6,7 @@
     <VerticalStackLayout>
         <ScrollView HorizontalOptions="Center"
                     Margin="20">
-            <Label Text="ScrollView Test 2"
+            <Label Text="ScrollView Test"
                    VerticalOptions="Center" 
                    HorizontalOptions="Center" />
         </ScrollView>
