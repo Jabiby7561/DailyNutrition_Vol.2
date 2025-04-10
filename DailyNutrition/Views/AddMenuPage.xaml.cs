@@ -78,4 +78,9 @@ public partial class AddMenuPage : ContentPage
             await DisplayAlert("ข้อผิดพลาด", $"ไม่สามารถอัปโหลดรูปได้: {ex.Message}", "ตกลง");
         }
     }
+
+    private void btnBack_Clicked(object sender, EventArgs e)
+    {
+        App.Current.MainPage = new TabSimplePage();
+    }
 }

@@ -6,4 +6,9 @@ public partial class TabSimplePage : TabbedPage
 	{
 		InitializeComponent();
 	}
+
+    private void btnProfileSetting_Clicked(object sender, EventArgs e)
+    {
+		return;
+    }
 }

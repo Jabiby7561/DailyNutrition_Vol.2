@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="DailyNutrition.Views.ViewsMenuPage"
+             Title="เพิ่มหรือแก้ไขเมนู">
+
+    <VerticalStackLayout>
+        
+        <Border Stroke="Gray"
+                StrokeThickness="2"
+                Margin="20">
+            
+            <!--ไว้ทำให้ขอบ Entry มน-->
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10" />
+            </Border.StrokeShape>
+            
+            <!--แทบค้นหาเมนู-->
+            <SearchBar x:Name="MenuSearchBar"
+                       Placeholder="ค้นหาเมนู"
+                       PlaceholderColor="Gray"
+                       TextColor="Black"
+                       BackgroundColor="WhiteSmoke"
+                       FontSize="Medium"
+                       HorizontalTextAlignment="Start"
+                       HorizontalOptions="Fill"/>
+        </Border>
+
+        <CollectionView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border>
+                        <Label Text="CollectionViews Test"/>
+                        
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <Button x:Name="btnAddMenu"
+                Text="เพิ่มเมนู"
+                BackgroundColor="Blue"
+                WidthRequest="150"
+                CornerRadius="20"
+                Margin="20"
+                Clicked="btnAddMenu_Clicked"/>
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -2,8 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DailyNutrition.Views.AddMenuPage"
-             Title="AddMenuPage">
-    
+             Title="เพิ่มเมนู">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnBack"
+                     Text="ย้อนกลับ"
+                     Clicked="btnBack_Clicked">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="AwesomeSoild"
+                                 Glyph="&#x2039;"
+                                 Size="30"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
     <StackLayout>
 
         <!-- รูปอาหาร -->

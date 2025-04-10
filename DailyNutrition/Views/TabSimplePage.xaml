@@ -10,11 +10,11 @@
     
     <TabbedPage.ToolbarItems>
         <ToolbarItem x:Name="btnProfileSetting"
-                     Text="+">
+                     Clicked="btnProfileSetting_Clicked">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="AwesomeSoild"
                                  Glyph="&#xf4ff;"
-                                 Size="24"/>
+                                 Size="30"/>
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </TabbedPage.ToolbarItems>
@@ -23,18 +23,36 @@
         <x:Arguments>
             <views:TodayMenuPage/>
         </x:Arguments>
+        
+        <NavigationPage.IconImageSource>
+            <FontImageSource FontFamily="AwesomeSoild"
+                             Glyph="&#xe3af;"
+                             Size="30"/>
+        </NavigationPage.IconImageSource>
     </NavigationPage>
 
     <NavigationPage Title="สรุปผล">
         <x:Arguments>
             <views:ConcludePage/>
         </x:Arguments>
+
+        <NavigationPage.IconImageSource>
+            <FontImageSource FontFamily="AwesomeSoild"
+                             Glyph="&#xe0e3;"
+                             Size="30"/>
+        </NavigationPage.IconImageSource>
     </NavigationPage>
 
     <NavigationPage Title="เพิ่มหรือแก้ไขเมนู">
         <x:Arguments>
-            <views:AddMenuPage/>
+            <views:ViewsMenuPage/>
         </x:Arguments>
+
+        <NavigationPage.IconImageSource>
+            <FontImageSource FontFamily="AwesomeSoild"
+                             Glyph="&#xf044;"
+                             Size="30"/>
+        </NavigationPage.IconImageSource>
     </NavigationPage>
     
 </TabbedPage>
