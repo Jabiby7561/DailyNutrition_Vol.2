@@ -20,11 +20,12 @@ namespace DailyNutrition.Database
                 return;
 
             // สร้างการเชื่อมต่อกับฐานข้อมูล SQLite
-            var dbPath = Path.Combine(FileSystem.AppDataDirectory, "NutritionApp.db3");
-            _database = new SQLiteAsyncConnection(dbPath);
+            _database = new SQLiteAsyncConnection(
+                Constants.DatabasePath, 
+                Constants.Flags);
 
             // สร้างตารางสำหรับ ClassMenu
-            await _database.CreateTableAsync<ClassMenu>();
+            var result = await _database.CreateTableAsync<ClassMenu>();
         }
 
         // เพิ่มเมนูใหม่ลงในฐานข้อมูล

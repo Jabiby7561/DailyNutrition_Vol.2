@@ -1,11 +1,16 @@
+using DailyNutrition.Models;
+using System.Collections.ObjectModel;
+
 namespace DailyNutrition.Views;
 
 public partial class ViewsMenuPage : ContentPage
 {
-	public ViewsMenuPage()
+    ObservableCollection<ClassMenu> FoodMenu { get; set; }
+    public ViewsMenuPage()
 	{
 		InitializeComponent();
-	}
+        FoodMenu = new ObservableCollection<ClassMenu>();
+    }
 
     private void btnAddMenu_Clicked(object sender, EventArgs e)
     {

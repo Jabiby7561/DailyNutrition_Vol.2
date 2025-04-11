@@ -6,7 +6,7 @@ namespace DailyNutrition.Models
     public class ClassMenu
     {
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        public int MenuId { get; set; }
         public string Name { get; set; }
         public float Protein { get; set; }
         public float Carbohydrates { get; set; }
@@ -22,9 +22,9 @@ namespace DailyNutrition.Models
         public override string ToString()
         {
             return $"เมนู: {Name}\n" +
-                $"พลังงานทั้งหมด: {CalculateEnergy()} กิโลแคลอรี่\n" +
-                $"โปรตีน: {Protein}g\nคาร์โบไฮเดรต: {Carbohydrates}g\n" +
-                $"ไขมัน: {Fat}g";
+                   $"พลังงานทั้งหมด: {CalculateEnergy()} กิโลแคลอรี่\n" +
+                   $"โปรตีน: {Protein}g\nคาร์โบไฮเดรต: {Carbohydrates}g\n" +
+                   $"ไขมัน: {Fat}g";
         }
     }
 }

@@ -5,18 +5,23 @@
              x:Class="DailyNutrition.Views.ViewsMenuPage"
              Title="เพิ่มหรือแก้ไขเมนู">
 
-    <VerticalStackLayout>
+    <Grid RowDefinitions="50,50,*,80"
+          Margin="10">
         
-        <Border Stroke="Gray"
-                StrokeThickness="2"
-                Margin="20">
+        <!--แทบค้นหาเมนู-->
+        <Border Grid.Row="0"
+                Stroke="Gray"
+                StrokeThickness="1"
+                VerticalOptions="Center"
+                HeightRequest="40"
+                Margin="10">
             
-            <!--ไว้ทำให้ขอบ Entry มน-->
+            <!--ไว้ทำให้ขอบ Border มน-->
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="10" />
             </Border.StrokeShape>
             
-            <!--แทบค้นหาเมนู-->
+            <!--คำสั่ง SearchBar-->
             <SearchBar x:Name="MenuSearchBar"
                        Placeholder="ค้นหาเมนู"
                        PlaceholderColor="Gray"
@@ -27,24 +32,68 @@
                        HorizontalOptions="Fill"/>
         </Border>
 
-        <CollectionView>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Border>
-                        <Label Text="CollectionViews Test"/>
+        <!--List รายการเมนู-->
+        <Label Grid.Row="1"
+               Text="รายการเมนู"
+               FontSize="22"
+               Margin="10"/>
+        <Border Grid.Row="2"
+                Stroke="Gray"
+                StrokeThickness="1"
+                Margin="5">
+            <CollectionView x:Name="ViewsMenu">
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     VerticalItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BackgroundColor="#82EEFD"
+                                Stroke="WhiteSmoke"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 5"
+                                Padding="3">
                         
-                    </Border>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        
+                            <Grid RowDefinitions="*,*"
+                                  ColumnDefinitions="50,*,50"
+                                  RowSpacing="5"
+                                  ColumnSpacing="10">
+                                <Border Stroke="WhiteSmoke"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 5"
+                                        Grid.RowSpan="2">
+                                    <Label VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"
+                                           FontFamily="mrr"
+                                           FontSize="40"
+                                           Text="&#xef42;"
+                                           TextColor="#9B59B6"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Label Text="ยังไม่มีรายการเมนูอาหาร"
+                           FontSize="16"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </CollectionView.EmptyView>
+            
+            </CollectionView>
+        </Border>
+
         <Button x:Name="btnAddMenu"
+                Grid.Row="3"
                 Text="เพิ่มเมนู"
                 BackgroundColor="Blue"
                 WidthRequest="150"
                 CornerRadius="20"
+                VerticalOptions="End"
                 Margin="20"
                 Clicked="btnAddMenu_Clicked"/>
-
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>
