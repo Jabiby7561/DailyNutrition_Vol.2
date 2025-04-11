@@ -22,9 +22,10 @@ namespace DailyNutrition.Models
         public override string ToString()
         {
             return $"เมนู: {Name}\n" +
-                   $"พลังงานทั้งหมด: {CalculateEnergy()} กิโลแคลอรี่\n" +
-                   $"โปรตีน: {Protein}g\nคาร์โบไฮเดรต: {Carbohydrates}g\n" +
-                   $"ไขมัน: {Fat}g";
+                   $"โปรตีน: {Protein}g\n" +
+                   $"คาร์โบไฮเดรต: {Carbohydrates}g\n" +
+                   $"ไขมัน: {Fat}g\n" +
+                   $"พลังงานทั้งหมด: {CalculateEnergy()} กิโลแคลอรี่";
         }
     }
 }

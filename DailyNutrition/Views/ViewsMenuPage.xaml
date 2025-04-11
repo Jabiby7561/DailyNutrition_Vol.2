@@ -28,6 +28,7 @@
                        TextColor="Black"
                        BackgroundColor="WhiteSmoke"
                        FontSize="Medium"
+                       CancelButtonColor="Gray"
                        HorizontalTextAlignment="Start"
                        HorizontalOptions="Fill"/>
         </Border>
@@ -41,49 +42,101 @@
                 Stroke="Gray"
                 StrokeThickness="1"
                 Margin="5">
-            <CollectionView x:Name="ViewsMenu">
+            <ScrollView>
+                <CollectionView x:Name="ViewsMenu"
+                                SelectionMode="Single"
+                                SelectionChanged="ViewsMenu_SelectionChanged">
 
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical"
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
                                      VerticalItemSpacing="5"/>
-                </CollectionView.ItemsLayout>
+                    </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border BackgroundColor="#82EEFD"
-                                Stroke="WhiteSmoke"
-                                StrokeThickness="1"
-                                StrokeShape="RoundRectangle 5"
-                                Padding="3">
-                        
-                            <Grid RowDefinitions="*,*"
-                                  ColumnDefinitions="50,*,50"
-                                  RowSpacing="5"
-                                  ColumnSpacing="10">
-                                <Border Stroke="WhiteSmoke"
-                                        StrokeThickness="1"
-                                        StrokeShape="RoundRectangle 5"
-                                        Grid.RowSpan="2">
-                                    <Label VerticalTextAlignment="Center"
-                                           HorizontalTextAlignment="Center"
-                                           FontFamily="mrr"
-                                           FontSize="40"
-                                           Text="&#xef42;"
-                                           TextColor="#9B59B6"/>
-                                </Border>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="#82EEFD"
+                                    Stroke="WhiteSmoke"
+                                    StrokeThickness="1"
+                                    StrokeShape="RoundRectangle 5"
+                                    Padding="5">
 
-                <CollectionView.EmptyView>
-                    <Label Text="ยังไม่มีรายการเมนูอาหาร"
-                           FontSize="16"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"/>
-                </CollectionView.EmptyView>
-            
-            </CollectionView>
+                                <Grid RowDefinitions="50,*,*,*,50"
+                                      ColumnDefinitions="50,*,50"
+                                      RowSpacing="5"
+                                      ColumnSpacing="10">
+                                    <!--<Border StrokeShape="RoundRectangle 5"
+                                            Grid.RowSpan="5">
+                                        <Image Aspect="AspectFill"
+                                           Source="dotnet_bot.png"
+                                           HeightRequest="100"
+                                           WidthRequest="100"/>
+                                    </Border>-->
+
+                                    <Image Grid.Row="0"
+                                           Grid.Column="0"
+                                           Grid.RowSpan="5"
+                                           Source="{Binding ImagePath}"
+                                           WidthRequest="70"
+                                           HeightRequest="70"
+                                           Aspect="AspectFill"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Center"/>
+
+                                    <Label Grid.Row="0" 
+                                           Grid.Column="1"
+                                           Text="{Binding Name}"
+                                           FontAttributes="Bold"
+                                           FontSize="16"
+                                           TextColor="#333"/>
+                                    
+                                    <Label Grid.Row="1" 
+                                           Grid.Column="1"
+                                           Text="{Binding Protein}"
+                                           FontSize="14"
+                                           TextColor="#777"/>
+                                    
+                                    <Label Grid.Row="2" 
+                                           Grid.Column="1"
+                                           Text="{Binding Carbohydrates}"
+                                           FontSize="14"
+                                           TextColor="#777"/>
+
+                                    <Label Grid.Row="3" 
+                                           Grid.Column="1"
+                                           Text="{Binding Fat}"   
+                                           FontSize="14"
+                                           TextColor="#777"/>
+
+                                    <Label Grid.Row="4" 
+                                           Grid.Column="1"
+                                           Text="พลังงาน"   
+                                           FontSize="14"
+                                           TextColor="#777"/>
+
+                                    <Button Grid.Row="1"
+                                            Grid.Column="2"
+                                            Grid.RowSpan="3"
+                                            Text="&#xf304;"
+                                            TextColor="#007AFF"
+                                            FontFamily="AwesomeSoild"
+                                            FontSize="30"
+                                            BackgroundColor="Transparent"/>
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                    <CollectionView.EmptyView>
+                        <Label Text="ยังไม่มีรายการเมนูอาหาร"
+                               FontSize="16"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+                    </CollectionView.EmptyView>
+                    
+                </CollectionView>
+            </ScrollView>
+
         </Border>
 
         <Button x:Name="btnAddMenu"

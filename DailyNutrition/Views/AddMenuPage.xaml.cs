@@ -82,5 +82,6 @@ public partial class AddMenuPage : ContentPage
     private void btnBack_Clicked(object sender, EventArgs e)
     {
         App.Current.MainPage = new TabSimplePage();
+        //await Navigation.PopAsync();
     }
 }

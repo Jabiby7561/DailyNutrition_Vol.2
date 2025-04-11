@@ -32,7 +32,14 @@ namespace DailyNutrition.Database
         public async Task<int> AddMenuAsync(ClassMenu menu)
         {
             await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
-            return await _database.InsertAsync(menu);
+            if (menu.MenuId != 0)
+            {
+                return await _database.UpdateAsync(menu);
+            }
+            else
+            {
+                return await _database.InsertAsync(menu);
+            }
         }
 
         // ดึงข้อมูลเมนูทั้งหมดจากฐานข้อมูล
