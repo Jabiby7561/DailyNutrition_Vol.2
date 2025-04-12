@@ -29,13 +29,13 @@ namespace DailyNutrition.Database
         }
 
         // ดึงข้อมูลเมนูทั้งหมดจากฐานข้อมูล
-        public async Task<List<ClassMenu>> GetAllMenusAsync()
+        public async Task<List<ClassMenu>> GetAllMenuAsync()
         {
             await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
             return await _database.Table<ClassMenu>().ToListAsync();
         }
 
-        public async Task<ClassMenu> GetNoteAsync(int menuid)
+        public async Task<ClassMenu> GetMenuAsync(int menuid)
         {
             await Init();
             return await _database.Table<ClassMenu>()

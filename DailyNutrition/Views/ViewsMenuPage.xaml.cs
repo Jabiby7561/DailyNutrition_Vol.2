@@ -1,10 +1,12 @@
-﻿using DailyNutrition.Models;
+﻿using DailyNutrition.Database;
+using DailyNutrition.Models;
 using System.Collections.ObjectModel;
 
 namespace DailyNutrition.Views;
 
 public partial class ViewsMenuPage : ContentPage
 {
+    public NutritionDatabase _database = new NutritionDatabase();
     ObservableCollection<ClassMenu> FoodMenu { get; set; }
     public ViewsMenuPage()
 	{
@@ -24,22 +26,23 @@ public partial class ViewsMenuPage : ContentPage
             });
         }
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LoadNotes();
+    }
+
+    private async void LoadNotes()
+    {
+        FoodMenu = new ObservableCollection<ClassMenu>(await _database.GetAllMenuAsync());
+        ViewsMenu.ItemsSource = FoodMenu;
+        OnPropertyChanged(nameof(ClassMenu));
+    }
+
     private void btnAddMenu_Clicked(object sender, EventArgs e)
     {
         App.Current.MainPage = new NavigationPage(new AddMenuPage());
         //await Navigation.PushAsync(new AddMenuPage());
     }
-
-    //protected override void OnAppearing()
-    //{
-    //    base.OnAppearing();
-    //    LoadNotes();
-    //}
-
-    //private async void LoadNotes()
-    //{
-    //    FoodMenu = new ObservableCollection<ClassMenu>(); // เดิมทีใน()ข้างๆ ClassMenu มี await App.Database.GetNotesAsync(App.User.ID)
-    //    ViewsMenu.ItemsSource = FoodMenu;
-    //    OnPropertyChanged(nameof(FoodMenu));
-    //}
 }

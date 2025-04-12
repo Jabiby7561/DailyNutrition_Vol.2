@@ -39,16 +39,6 @@ public partial class AddMenuPage : ContentPage
             return;
         }
 
-        // สร้างเมนูใหม่
-        //var newMenu = new ClassMenu
-        //{
-        //    Name = name,
-        //    Protein = protein,
-        //    Carbohydrates = carbs,
-        //    Fat = fat,
-        //    ImagePath = "" // ใส่เส้นทางรูปภาพหากต้องการ
-        //};
-
         // บันทึกลงฐานข้อมูล
         await _database.AddMenuAsync(newMenu);
         await DisplayAlert("สำเร็จ", "เมนูถูกบันทึกในฐานข้อมูลเรียบร้อยแล้ว!", "ตกลง");
