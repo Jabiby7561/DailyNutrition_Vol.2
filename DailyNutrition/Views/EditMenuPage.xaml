@@ -43,30 +43,35 @@
         <Entry x:Name="MenuName"
                Text="{Binding Name}"
                Placeholder="ชื่อเมนู"
+               PlaceholderColor="#4a4a4a"
                Margin="10"/>
 
         <Entry x:Name="Protein" 
                Text="{Binding Protein}"
                Placeholder="โปรตีน (g)"
+               PlaceholderColor="#4a4a4a"
                Keyboard="Numeric"
                Margin="10"/>
 
         <Entry x:Name="Carbohydrates"
                Text="{Binding Carbohydrates}"
                Placeholder="คาร์โบไฮเดรต (g)" 
+               PlaceholderColor="#4a4a4a"
                Keyboard="Numeric"
                Margin="10"/>
 
         <Entry x:Name="Fat" 
                Text="{Binding Fat}"
                Placeholder="ไขมัน (g)" 
+               PlaceholderColor="#4a4a4a"
                Keyboard="Numeric"
                Margin="10"/>
 
         <Label x:Name="EnergyLabel" 
-               Text="{Binding Energy, StringFormat='แคลอรี่ทั้งหมด : {0:F2}'}"
+               Text="{Binding Energy, StringFormat='แคลอรี่ทั้งหมด : {0:F2} แคลอรี่'}"
                FontAttributes="Bold"
                Margin="20"/>
+        
         <!--ปุ่มแก้ไขและลบเมนู-->
         <HorizontalStackLayout Spacing="10"
                                VerticalOptions="Center"
@@ -75,11 +80,14 @@
             <Button x:Name="btnSaveMenu"
                     Text="บันทึก"
                     Margin="20"
+                    WidthRequest="100"
                     Clicked="btnSaveMenu_Clicked" />
             <!--ปุ่มแก้ไขเมนู-->
             <Button x:Name="btnDeleteMenu" 
                     Text="ลบเมนู"
+                    BackgroundColor="Red"
                     Margin="20"
+                    WidthRequest="100"
                     Clicked="btnDeleteMenu_Clicked" />
             
         </HorizontalStackLayout>

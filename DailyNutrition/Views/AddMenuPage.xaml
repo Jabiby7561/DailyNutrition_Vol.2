@@ -43,28 +43,32 @@
         <Entry x:Name="MenuName"
                Text="{Binding Name}"
                Placeholder="ชื่อเมนู"
+               PlaceholderColor="#4a4a4a"
                Margin="10"/>
         
         <Entry x:Name="Protein" 
                Text="{Binding Protein}"
                Placeholder="โปรตีน (g)"
+               PlaceholderColor="#4a4a4a"
                Keyboard="Numeric"
                Margin="10"/>
         
         <Entry x:Name="Carbohydrates"
                Text="{Binding Carbohydrates}"
-               Placeholder="คาร์โบไฮเดรต (g)" 
+               Placeholder="คาร์โบไฮเดรต (g)"
+               PlaceholderColor="#4a4a4a"
                Keyboard="Numeric"
                Margin="10"/>
         
         <Entry x:Name="Fat" 
                Text="{Binding Fat}"
-               Placeholder="ไขมัน (g)" 
+               Placeholder="ไขมัน (g)"
+               PlaceholderColor="#4a4a4a"
                Keyboard="Numeric"
                Margin="10"/>
 
         <Label x:Name="EnergyLabel" 
-               Text="{Binding Energy, StringFormat='แคลอรี่ทั้งหมด : {0:F2}'}"
+               Text="{Binding Energy, StringFormat='พลังงานทั้งหมด : {0:F2} แคลอรี่'}"
                FontAttributes="Bold"
                Margin="20"/>
 

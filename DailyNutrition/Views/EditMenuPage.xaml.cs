@@ -34,15 +34,16 @@ public partial class EditMenuPage : ContentPage
         await App.MenuDatabase.AddMenuAsync(saveMenu);
         await DisplayAlert("สำเร็จ", "เมนูถูกบันทึกในฐานข้อมูลเรียบร้อยแล้ว!", "ตกลง");
 
-        //App.Current.MainPage = new TabSimplePage();
-        await Navigation.PopAsync();
+        App.Current.MainPage = new TabSimplePage();
+        //await Navigation.PopAsync();
     }
 
     private async void btnDeleteMenu_Clicked(object sender, EventArgs e)
     {
         var deleteMenu = (ClassMenu)BindingContext;
         await App.MenuDatabase.DeleteMenuAsync(deleteMenu);
-        await Navigation.PopAsync();
+        App.Current.MainPage = new TabSimplePage();
+        //await Navigation.PopAsync();
     }
 
     // อัปโหลดรูปภาพ
@@ -74,7 +75,7 @@ public partial class EditMenuPage : ContentPage
 
     private async void btnBack_Clicked(object sender, EventArgs e)
     {
-        //App.Current.MainPage = new TabSimplePage();
-        await Navigation.PopAsync();
+        App.Current.MainPage = new TabSimplePage();
+        //await Navigation.PopAsync();
     }
 }

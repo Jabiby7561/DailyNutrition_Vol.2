@@ -8,10 +8,6 @@ namespace DailyNutrition.Views;
 
 public partial class AddMenuPage : ContentPage
 {
-    // ประกาศ Field newMenu ที่นี่
-    //private ClassMenu newMenu = new ClassMenu();
-    //public NutritionDatabase _database = new NutritionDatabase();
-
     public AddMenuPage()
     {
         InitializeComponent();
@@ -43,8 +39,8 @@ public partial class AddMenuPage : ContentPage
         await App.MenuDatabase.AddMenuAsync(newMenu);
         await DisplayAlert("สำเร็จ", "เมนูถูกบันทึกในฐานข้อมูลเรียบร้อยแล้ว!", "ตกลง");
 
-        //App.Current.MainPage = new TabSimplePage();
-        await Navigation.PopAsync();
+        App.Current.MainPage = new TabSimplePage();
+        //await Navigation.PopAsync();
     }
 
     // อัปโหลดรูปภาพ
@@ -77,7 +73,7 @@ public partial class AddMenuPage : ContentPage
     // ปุ่มย้อนกลับ
     private async void btnBack_Clicked(object sender, EventArgs e)
     {
-        //App.Current.MainPage = new TabSimplePage();
-        await Navigation.PopAsync();
+        App.Current.MainPage = new TabSimplePage();
+        //await Navigation.PopAsync();
     }
 }

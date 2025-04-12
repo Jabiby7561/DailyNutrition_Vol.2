@@ -82,42 +82,44 @@
                                        Text="{Binding Name}"
                                        FontAttributes="Bold"
                                        FontSize="16"
-                                       TextColor="#333"/>
+                                       TextColor="#2b2b2b"/>
 
                                 <Label Grid.Row="1" 
                                        Grid.Column="1"
-                                       Text="{Binding Protein}"
+                                       Text="{Binding Protein, StringFormat='โปรตีน : {0:F2} กรัม'}"
                                        FontSize="14"
-                                       TextColor="#777"/>
+                                       TextColor="#4a4a4a"/>
 
                                 <Label Grid.Row="2" 
                                        Grid.Column="1"
-                                       Text="{Binding Carbohydrates}"
+                                       Text="{Binding Carbohydrates, StringFormat='คาร์โบไฮเดรต : {0:F2} กรัม'}"
                                        FontSize="14"
-                                       TextColor="#777"/>
+                                       TextColor="#4a4a4a"/>
 
                                 <Label Grid.Row="3" 
                                        Grid.Column="1"
-                                       Text="{Binding Fat}"   
+                                       Text="{Binding Fat, StringFormat='ไขมัน : {0:F2} กรัม'}"   
                                        FontSize="14"
-                                       TextColor="#777"/>
+                                       TextColor="#4a4a4a"/>
 
                                 <Label Grid.Row="4" 
                                        Grid.Column="1"
-                                       Text="{Binding Energy}"   
+                                       Text="{Binding Energy, StringFormat='พลังงานทั้ทั้งหมด : {0:F2} แคลอรี่'}"   
                                        FontSize="14"
-                                       TextColor="#777"/>
+                                       TextColor="#4a4a4a"/>
                                 
                                 
                                 <Label x:Name="btnEditMenu"
-                                        Grid.Row="1"
-                                        Grid.Column="2"
-                                        Grid.RowSpan="3"
-                                        Text="&#xf304;"
-                                        TextColor="#007AFF"
-                                        FontFamily="AwesomeSoild"
-                                        FontSize="30"
-                                        BackgroundColor="Transparent"/>
+                                       Grid.Row="0"
+                                       Grid.Column="2"
+                                       Grid.RowSpan="5"
+                                       Text="&#xf304;"
+                                       TextColor="#007AFF"
+                                       FontFamily="AwesomeSoild"
+                                       FontSize="30"
+                                       BackgroundColor="Transparent"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
 
                             </Grid>
                         </Border>
