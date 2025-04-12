@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using DailyNutrition.Database;
 using DailyNutrition.Models;
 using Microsoft.Maui.Controls;
@@ -8,59 +8,62 @@ namespace DailyNutrition.Views;
 
 public partial class AddMenuPage : ContentPage
 {
-    // ��С�� Field newMenu �����
-    private ClassMenu newMenu = new ClassMenu();
-    private NutritionDatabase _database = new NutritionDatabase();
+    // ประกาศ Field newMenu ที่นี่
+    //private ClassMenu newMenu = new ClassMenu();
+    public NutritionDatabase _database = new NutritionDatabase();
 
     public AddMenuPage()
     {
         InitializeComponent();
+        BindingContext = new ClassMenu();
     }
 
     private async void AddMenuButton_Clicked(object sender, EventArgs e)
     {
-        string name = MenuName.Text;
+        //string name = MenuName.Text;
+        var newMenu = (ClassMenu)BindingContext;
 
-        // ��Ǩ�ͺ��������
-        if (string.IsNullOrEmpty(name))
+        // ตรวจสอบชื่อเมนู
+        if (string.IsNullOrEmpty(newMenu.Name))
         {
-            await DisplayAlert("��ͼԴ��Ҵ", "��سҡ�͡��������", "��ŧ");
+            await DisplayAlert("เกิดข้อผิดพลาด!", "กรุณากรอกชื่อเมนู", "ตกลง");
             return;
         }
 
-        // ��Ǩ�ͺ����������ҡ��
-        if (!float.TryParse(Protein.Text, out float protein) ||
-            !float.TryParse(Carbohydrates.Text, out float carbs) ||
-            !float.TryParse(Fat.Text, out float fat))
+        // ตรวจสอบข้อมูลโภชนาการ
+        if (!float.TryParse(newMenu.Protein.ToString(), out float protein) ||
+            !float.TryParse(newMenu.Carbohydrates.ToString(), out float carbs) ||
+            !float.TryParse(newMenu.Fat.ToString(), out float fat))
         {
-            await DisplayAlert("��ͼԴ��Ҵ", "��سҡ�͡����������ҡ�÷��١��ͧ", "��ŧ");
+            await DisplayAlert("เกิดข้อผิดพลาด!", "กรุณากรอกข้อมูลโภชนาการที่ถูกต้อง", "ตกลง");
             return;
         }
 
-        // ���ҧ��������
-        var newMenu = new ClassMenu
-        {
-            Name = name,
-            Protein = protein,
-            Carbohydrates = carbs,
-            Fat = fat,
-            ImagePath = "" // �����鹷ҧ�ٻ�Ҿ�ҡ��ͧ���
-        };
+        // สร้างเมนูใหม่
+        //var newMenu = new ClassMenu
+        //{
+        //    Name = name,
+        //    Protein = protein,
+        //    Carbohydrates = carbs,
+        //    Fat = fat,
+        //    ImagePath = "" // ใส่เส้นทางรูปภาพหากต้องการ
+        //};
 
-        // �ѹ�֡ŧ�ҹ������
+        // บันทึกลงฐานข้อมูล
         await _database.AddMenuAsync(newMenu);
-
-        await DisplayAlert("�����", "���ٶ١�ѹ�֡㹰ҹ���������º��������!", "��ŧ");
+        await DisplayAlert("สำเร็จ", "เมนูถูกบันทึกในฐานข้อมูลเรียบร้อยแล้ว!", "ตกลง");
+        await Navigation.PopAsync();
     }
 
-    // Event: �ѻ��Ŵ�ٻ�Ҿ
+    // อัปโหลดรูปภาพ
     private async void UploadImageButton_Clicked(object sender, EventArgs e)
     {
+        var picMenu = (ClassMenu)BindingContext;
         try
         {
-            var result = await FilePicker.PickAsync(new PickOptions
+            var result = await FilePicker.Default.PickAsync(new PickOptions
             {
-                PickerTitle = "���͡�Ҿ�����",
+                PickerTitle = "เลือกภาพอาหาร",
                 FileTypes = FilePickerFileType.Images
             });
 
@@ -69,13 +72,13 @@ public partial class AddMenuPage : ContentPage
                 var stream = await result.OpenReadAsync();
                 FoodImage.Source = ImageSource.FromStream(() => stream);
 
-                // �ѹ�֡��鹷ҧ����ٻ� newMenu
-                newMenu.ImagePath = result.FullPath;
+                // บันทึกเส้นทางไฟล์รูปใน picMenu
+                picMenu.ImagePath = result.FullPath;
             }
         }
         catch (Exception ex)
         {
-            await DisplayAlert("��ͼԴ��Ҵ", $"�������ö�ѻ��Ŵ�ٻ��: {ex.Message}", "��ŧ");
+            await DisplayAlert("เกิดข้อผิดพลาด!", $"ไม่สามารถอัปโหลดรูปได้: {ex.Message}", "ตกลง");
         }
     }
 

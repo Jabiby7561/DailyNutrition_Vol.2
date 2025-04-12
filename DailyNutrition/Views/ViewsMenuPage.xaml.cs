@@ -30,16 +30,16 @@ public partial class ViewsMenuPage : ContentPage
         //await Navigation.PushAsync(new AddMenuPage());
     }
 
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        LoadNotes();
-    }
+    //protected override void OnAppearing()
+    //{
+    //    base.OnAppearing();
+    //    LoadNotes();
+    //}
 
-    private async void LoadNotes()
-    {
-        FoodMenu = new ObservableCollection<ClassMenu>(); // เดิมทีใน()ข้างๆ ClassMenu มี await App.Database.GetNotesAsync(App.User.ID)
-        ViewsMenu.ItemsSource = FoodMenu;
-        OnPropertyChanged(nameof(FoodMenu));
-    }
+    //private async void LoadNotes()
+    //{
+    //    FoodMenu = new ObservableCollection<ClassMenu>(); // เดิมทีใน()ข้างๆ ClassMenu มี await App.Database.GetNotesAsync(App.User.ID)
+    //    ViewsMenu.ItemsSource = FoodMenu;
+    //    OnPropertyChanged(nameof(FoodMenu));
+    //}
 }

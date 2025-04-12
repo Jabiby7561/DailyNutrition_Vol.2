@@ -12,9 +12,9 @@ namespace DailyNutrition.Database
     // 2. SQLitePCLRaw.bundle_green : 2.1.11
     public class NutritionDatabase
     {
-        private SQLiteAsyncConnection _database;
+        public SQLiteAsyncConnection _database;
 
-        private async Task Init()
+        public async Task Init()
         {
             if (_database != null)
                 return;
@@ -26,6 +26,21 @@ namespace DailyNutrition.Database
 
             // สร้างตารางสำหรับ ClassMenu
             var result = await _database.CreateTableAsync<ClassMenu>();
+        }
+
+        // ดึงข้อมูลเมนูทั้งหมดจากฐานข้อมูล
+        public async Task<List<ClassMenu>> GetAllMenusAsync()
+        {
+            await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
+            return await _database.Table<ClassMenu>().ToListAsync();
+        }
+
+        public async Task<ClassMenu> GetNoteAsync(int menuid)
+        {
+            await Init();
+            return await _database.Table<ClassMenu>()
+                                  .Where(n => n.MenuId == menuid)
+                                  .FirstOrDefaultAsync();
         }
 
         // เพิ่มเมนูใหม่ลงในฐานข้อมูล
@@ -42,18 +57,11 @@ namespace DailyNutrition.Database
             }
         }
 
-        // ดึงข้อมูลเมนูทั้งหมดจากฐานข้อมูล
-        public async Task<List<ClassMenu>> GetAllMenusAsync()
-        {
-            await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
-            return await _database.Table<ClassMenu>().ToListAsync();
-        }
-
         // ลบข้อมูลเมนูออกจากฐานข้อมูล
-        public async Task<int> DeleteMenuAsync(int id)
+        public async Task<int> DeleteMenuAsync(ClassMenu id)
         {
             await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
-            return await _database.DeleteAsync<ClassMenu>(id);
+            return await _database.DeleteAsync(id);
         }
     }
 }

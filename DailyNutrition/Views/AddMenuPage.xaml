@@ -63,10 +63,10 @@
                Margin="10"/>
 
         <Label x:Name="EnergyLabel" 
-               Text="แคลอรี่ทั้งหมด : {0}" 
+               Text="{Binding Energy, StringFormat='แคลอรี่ทั้งหมด : {0:F2}'}"
+               FontAttributes="Bold"
                Margin="20"/>
-        <!--{Binding CalculateEnergy()}, StringFormat='แคลอรี่ทั้งหมด : {0}'}-->
-        
+
         <Button Text="เพิ่มเมนู" 
                 Margin="20"
                 Clicked="AddMenuButton_Clicked" />
