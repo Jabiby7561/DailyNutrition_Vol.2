@@ -62,9 +62,10 @@
                Keyboard="Numeric"
                Margin="10"/>
 
-        <Label x:Name="EnergyLabel" 
+        <Entry x:Name="EnergyLabel" 
                Text="{Binding Energy, StringFormat='แคลอรี่ทั้งหมด : {0:F2}'}"
                FontAttributes="Bold"
+               IsReadOnly="True"
                Margin="20"/>
 
         <Button Text="เพิ่มเมนู" 

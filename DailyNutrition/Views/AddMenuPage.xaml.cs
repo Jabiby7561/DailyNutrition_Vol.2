@@ -52,7 +52,7 @@ public partial class AddMenuPage : ContentPage
         // บันทึกลงฐานข้อมูล
         await _database.AddMenuAsync(newMenu);
         await DisplayAlert("สำเร็จ", "เมนูถูกบันทึกในฐานข้อมูลเรียบร้อยแล้ว!", "ตกลง");
-        await Navigation.PopAsync();
+        App.Current.MainPage = new TabSimplePage();
     }
 
     // อัปโหลดรูปภาพ

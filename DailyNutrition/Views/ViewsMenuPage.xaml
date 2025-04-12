@@ -44,8 +44,7 @@
                 Margin="5">
 
             <CollectionView x:Name="ViewsMenu"
-                            SelectionMode="Single"
-                            SelectionChanged="ViewsMenu_SelectionChanged">
+                            >
 
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
