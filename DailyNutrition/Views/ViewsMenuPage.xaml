@@ -50,7 +50,7 @@
 
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
-                                    VerticalItemSpacing="5"/>
+                                     VerticalItemSpacing="5"/>
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
@@ -69,47 +69,48 @@
                                 <Image Grid.Row="0"
                                        Grid.Column="0"
                                        Grid.RowSpan="5"
-                                        Source="{Binding ImagePath}"
-                                        WidthRequest="70"
-                                        HeightRequest="70"
-                                        Aspect="AspectFill"
-                                        HorizontalOptions="Start"
-                                        VerticalOptions="Center"/>
+                                       Source="{Binding ImagePath}"
+                                       WidthRequest="70"
+                                       HeightRequest="70"
+                                       Aspect="AspectFill"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Center"/>
                                 
                                 
                                 <Label Grid.Row="0" 
-                                        Grid.Column="1"
-                                        Text="{Binding Name}"
-                                        FontAttributes="Bold"
-                                        FontSize="16"
-                                        TextColor="#333"/>
+                                       Grid.Column="1"
+                                       Text="{Binding Name}"
+                                       FontAttributes="Bold"
+                                       FontSize="16"
+                                       TextColor="#333"/>
 
                                 <Label Grid.Row="1" 
-                                        Grid.Column="1"
-                                        Text="{Binding Protein}"
-                                        FontSize="14"
-                                        TextColor="#777"/>
+                                       Grid.Column="1"
+                                       Text="{Binding Protein}"
+                                       FontSize="14"
+                                       TextColor="#777"/>
 
                                 <Label Grid.Row="2" 
-                                        Grid.Column="1"
-                                        Text="{Binding Carbohydrates}"
-                                        FontSize="14"
-                                        TextColor="#777"/>
+                                       Grid.Column="1"
+                                       Text="{Binding Carbohydrates}"
+                                       FontSize="14"
+                                       TextColor="#777"/>
 
                                 <Label Grid.Row="3" 
-                                        Grid.Column="1"
-                                        Text="{Binding Fat}"   
-                                        FontSize="14"
-                                        TextColor="#777"/>
+                                       Grid.Column="1"
+                                       Text="{Binding Fat}"   
+                                       FontSize="14"
+                                       TextColor="#777"/>
 
                                 <Label Grid.Row="4" 
-                                        Grid.Column="1"
-                                        Text="{Binding Energy}"   
-                                        FontSize="14"
-                                        TextColor="#777"/>
+                                       Grid.Column="1"
+                                       Text="{Binding Energy}"   
+                                       FontSize="14"
+                                       TextColor="#777"/>
                                 
                                 
-                                <Button Grid.Row="1"
+                                <Label x:Name="btnEditMenu"
+                                        Grid.Row="1"
                                         Grid.Column="2"
                                         Grid.RowSpan="3"
                                         Text="&#xf304;"
@@ -133,7 +134,8 @@
             </CollectionView>
         </Border>
 
-        <Button x:Name="btnAddMenu"
+        <!--ปุ่มพาไปหน้าเพิ่มเมนู-->
+        <Button x:Name="btnAddMenuPage"
                 Grid.Row="3"
                 Text="เพิ่มเมนู"
                 BackgroundColor="Blue"
@@ -141,6 +143,7 @@
                 CornerRadius="20"
                 VerticalOptions="End"
                 Margin="20"
-                Clicked="btnAddMenu_Clicked"/>
+                CommandParameter="{Binding .}"
+                Clicked="btnAddMenuPage_Clicked"/>
     </Grid>
 </ContentPage>

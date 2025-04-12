@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DailyNutrition.Views.AddMenuPage"
-             Title="เพิ่มเมนู">
+             x:Class="DailyNutrition.Views.EditMenuPage"
+             Title="EditMenuPage">
 
     <!--ตกแต่ง Title ของหน้าเพิ่มเมนู-->
     <NavigationPage.TitleView>
         <Label x:Name="pageTitleView"
-               Text="เพิ่มเมนู"
+               Text="แก้ไขเมนู"
                TextColor="White"
                FontSize="22"
                HorizontalTextAlignment="Center"
@@ -37,26 +37,26 @@
         <Button Text="อัปโหลดรูปอาหาร" 
                 Margin="20"
                 Clicked="UploadImageButton_Clicked" />
-        
-        
+
+
         <!-- ฟิลด์กรอกข้อมูล -->
         <Entry x:Name="MenuName"
                Text="{Binding Name}"
                Placeholder="ชื่อเมนู"
                Margin="10"/>
-        
+
         <Entry x:Name="Protein" 
                Text="{Binding Protein}"
                Placeholder="โปรตีน (g)"
                Keyboard="Numeric"
                Margin="10"/>
-        
+
         <Entry x:Name="Carbohydrates"
                Text="{Binding Carbohydrates}"
                Placeholder="คาร์โบไฮเดรต (g)" 
                Keyboard="Numeric"
                Margin="10"/>
-        
+
         <Entry x:Name="Fat" 
                Text="{Binding Fat}"
                Placeholder="ไขมัน (g)" 
@@ -67,14 +67,23 @@
                Text="{Binding Energy, StringFormat='แคลอรี่ทั้งหมด : {0:F2}'}"
                FontAttributes="Bold"
                Margin="20"/>
-
-        <!--ปุ่มเพิ่มเมนู-->
-        <Button x:Name="btnAddMenu"
-                Text="เพิ่มเมนู" 
-                Margin="20"
-                WidthRequest="150"
-                Clicked="btnAddMenu_Clicked" />
+        <!--ปุ่มแก้ไขและลบเมนู-->
+        <HorizontalStackLayout Spacing="10"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center">
+            <!--ปุ่มแก้ไขเมนู-->
+            <Button x:Name="btnSaveMenu"
+                    Text="บันทึก"
+                    Margin="20"
+                    Clicked="btnSaveMenu_Clicked" />
+            <!--ปุ่มแก้ไขเมนู-->
+            <Button x:Name="btnDeleteMenu" 
+                    Text="ลบเมนู"
+                    Margin="20"
+                    Clicked="btnDeleteMenu_Clicked" />
+            
+        </HorizontalStackLayout>
 
     </VerticalStackLayout>
-    
+
 </ContentPage>

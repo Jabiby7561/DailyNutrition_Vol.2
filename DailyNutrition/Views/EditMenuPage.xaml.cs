@@ -1,49 +1,47 @@
-﻿using System;
-using DailyNutrition.Database;
+﻿using DailyNutrition.Database;
 using DailyNutrition.Models;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Storage;
 
 namespace DailyNutrition.Views;
 
-public partial class AddMenuPage : ContentPage
+public partial class EditMenuPage : ContentPage
 {
-    // ประกาศ Field newMenu ที่นี่
-    //private ClassMenu newMenu = new ClassMenu();
-    //public NutritionDatabase _database = new NutritionDatabase();
-
-    public AddMenuPage()
-    {
-        InitializeComponent();
+    public EditMenuPage()
+	{
+		InitializeComponent();
         BindingContext = new ClassMenu();
     }
-
-    // ปุ่มเพิ่มเมนู
-    private async void btnAddMenu_Clicked(object sender, EventArgs e)
+    private async void btnSaveMenu_Clicked(object sender, EventArgs e)
     {
-        var newMenu = (ClassMenu)BindingContext;
+        var saveMenu = (ClassMenu)BindingContext;
 
         // ตรวจสอบชื่อเมนู
-        if (string.IsNullOrEmpty(newMenu.Name))
+        if (string.IsNullOrEmpty(saveMenu.Name))
         {
             await DisplayAlert("เกิดข้อผิดพลาด!", "กรุณากรอกชื่อเมนู", "ตกลง");
             return;
         }
 
         // ตรวจสอบข้อมูลโภชนาการ
-        if (!float.TryParse(newMenu.Protein.ToString(), out float protein) ||
-            !float.TryParse(newMenu.Carbohydrates.ToString(), out float carbs) ||
-            !float.TryParse(newMenu.Fat.ToString(), out float fat))
+        if (!float.TryParse(saveMenu.Protein.ToString(), out float protein) ||
+            !float.TryParse(saveMenu.Carbohydrates.ToString(), out float carbs) ||
+            !float.TryParse(saveMenu.Fat.ToString(), out float fat))
         {
             await DisplayAlert("เกิดข้อผิดพลาด!", "กรุณากรอกข้อมูลโภชนาการที่ถูกต้อง", "ตกลง");
             return;
         }
 
         // บันทึกลงฐานข้อมูล
-        await App.MenuDatabase.AddMenuAsync(newMenu);
+        await App.MenuDatabase.AddMenuAsync(saveMenu);
         await DisplayAlert("สำเร็จ", "เมนูถูกบันทึกในฐานข้อมูลเรียบร้อยแล้ว!", "ตกลง");
 
         //App.Current.MainPage = new TabSimplePage();
+        await Navigation.PopAsync();
+    }
+
+    private async void btnDeleteMenu_Clicked(object sender, EventArgs e)
+    {
+        var deleteMenu = (ClassMenu)BindingContext;
+        await App.MenuDatabase.DeleteMenuAsync(deleteMenu);
         await Navigation.PopAsync();
     }
 
@@ -74,7 +72,6 @@ public partial class AddMenuPage : ContentPage
         }
     }
 
-    // ปุ่มย้อนกลับ
     private async void btnBack_Clicked(object sender, EventArgs e)
     {
         //App.Current.MainPage = new TabSimplePage();

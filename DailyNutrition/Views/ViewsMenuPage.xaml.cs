@@ -5,8 +5,7 @@ using System.Collections.ObjectModel;
 namespace DailyNutrition.Views;
 
 public partial class ViewsMenuPage : ContentPage
-{
-    public NutritionDatabase _database = new NutritionDatabase();
+{   
     ObservableCollection<ClassMenu> FoodMenu { get; set; }
     public ViewsMenuPage()
 	{
@@ -20,7 +19,8 @@ public partial class ViewsMenuPage : ContentPage
         if (e.CurrentSelection[0] != null)
         {
             ClassMenu menus = e.CurrentSelection[0] as ClassMenu;
-            App.Current.MainPage = new NavigationPage(new AddMenuPage
+            //App.Current.MainPage = new NavigationPage(new EditMenuPage()
+            await Navigation.PushAsync(new EditMenuPage()
             {
                 BindingContext = menus
             });
@@ -35,14 +35,25 @@ public partial class ViewsMenuPage : ContentPage
 
     private async void LoadNotes()
     {
-        FoodMenu = new ObservableCollection<ClassMenu>(await _database.GetAllMenuAsync());
+        FoodMenu = new ObservableCollection<ClassMenu>(await App.MenuDatabase.GetAllMenuAsync());
         ViewsMenu.ItemsSource = FoodMenu;
         OnPropertyChanged(nameof(ClassMenu));
     }
 
-    private void btnAddMenu_Clicked(object sender, EventArgs e)
+    private async void btnAddMenuPage_Clicked(object sender, EventArgs e)
     {
-        App.Current.MainPage = new NavigationPage(new AddMenuPage());
-        //await Navigation.PushAsync(new AddMenuPage());
+        //App.Current.MainPage = new NavigationPage(new AddMenuPage());
+        await Navigation.PushAsync(new AddMenuPage());
     }
+
+    //private async void btnEditMenu_Clicked(object sender, EventArgs e)
+    //{
+    //    if (sender is Button button && button.CommandParameter is ClassMenu menus)
+    //    {
+    //        await Navigation.PushAsync(new EditMenuPage()
+    //        {
+    //            BindingContext = menus
+    //        });
+    //    }
+    //}
 }

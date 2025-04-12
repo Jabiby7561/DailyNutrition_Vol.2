@@ -72,6 +72,9 @@
 	  <MauiXaml Update="Views\ConcludePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\EditMenuPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TabSimplePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
