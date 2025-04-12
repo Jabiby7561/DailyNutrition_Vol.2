@@ -20,7 +20,7 @@ public partial class ViewsMenuPage : ContentPage
         if (e.CurrentSelection[0] != null)
         {
             ClassMenu menus = e.CurrentSelection[0] as ClassMenu;
-            await Navigation.PushAsync(new AddMenuPage
+            App.Current.MainPage = new NavigationPage(new AddMenuPage
             {
                 BindingContext = menus
             });

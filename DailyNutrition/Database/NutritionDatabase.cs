@@ -35,13 +35,13 @@ namespace DailyNutrition.Database
             return await _database.Table<ClassMenu>().ToListAsync();
         }
 
-        public async Task<ClassMenu> GetMenuAsync(int menuid)
-        {
-            await Init();
-            return await _database.Table<ClassMenu>()
-                                  .Where(n => n.MenuId == menuid)
-                                  .FirstOrDefaultAsync();
-        }
+        //public async Task<ClassMenu> GetMenuAsync(int menuid)
+        //{
+        //    await Init();
+        //    return await _database.Table<ClassMenu>()
+        //                          .Where(n => n.MenuId == menuid)
+        //                          .FirstOrDefaultAsync();
+        //}
 
         // เพิ่มเมนูใหม่ลงในฐานข้อมูล
         public async Task<int> AddMenuAsync(ClassMenu menu)
