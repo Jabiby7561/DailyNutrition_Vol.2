@@ -4,7 +4,7 @@
              x:Class="DailyNutrition.Views.EditMenuPage"
              Title="EditMenuPage">
 
-    <!--ตกแต่ง Title ของหน้าเพิ่มเมนู-->
+    <!-- ส่วนหัว : Title -->
     <NavigationPage.TitleView>
         <Label x:Name="pageTitleView"
                Text="แก้ไขเมนู"
@@ -14,7 +14,7 @@
                VerticalTextAlignment="Center"/>
     </NavigationPage.TitleView>
 
-    <!--ปุ่มย้อยกลับ-->
+    <!-- ส่วนหัว : ปุ่มย้อยกลับ -->
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btnBack"
                      Clicked="btnBack_Clicked">
@@ -37,52 +37,54 @@
         <Button Text="อัปโหลดรูปอาหาร" 
                 Margin="20"
                 Clicked="UploadImageButton_Clicked" />
-
-
+        
         <!-- ฟิลด์กรอกข้อมูล -->
-        <Entry x:Name="MenuName"
+        <Entry x:Name="MenuNameEntry"
                Text="{Binding Name}"
                Placeholder="ชื่อเมนู"
                PlaceholderColor="#4a4a4a"
                Margin="10"/>
 
-        <Entry x:Name="Protein" 
+        <Entry x:Name="ProteinEntry" 
                Text="{Binding Protein}"
                Placeholder="โปรตีน (g)"
                PlaceholderColor="#4a4a4a"
                Keyboard="Numeric"
+               TextChanged="OnInputChanged"
                Margin="10"/>
 
-        <Entry x:Name="Carbohydrates"
+        <Entry x:Name="CarbohydratesEntry"
                Text="{Binding Carbohydrates}"
                Placeholder="คาร์โบไฮเดรต (g)" 
                PlaceholderColor="#4a4a4a"
                Keyboard="Numeric"
+               TextChanged="OnInputChanged"
                Margin="10"/>
 
-        <Entry x:Name="Fat" 
+        <Entry x:Name="FatEntry" 
                Text="{Binding Fat}"
                Placeholder="ไขมัน (g)" 
                PlaceholderColor="#4a4a4a"
                Keyboard="Numeric"
+               TextChanged="OnInputChanged"
                Margin="10"/>
 
         <Label x:Name="EnergyLabel" 
-               Text="{Binding Energy, StringFormat='แคลอรี่ทั้งหมด : {0:F2} แคลอรี่'}"
+               Text="{Binding Energy}"
                FontAttributes="Bold"
                Margin="20"/>
         
-        <!--ปุ่มแก้ไขและลบเมนู-->
+        <!-- ปุ่มแก้ไขและลบเมนู -->
         <HorizontalStackLayout Spacing="10"
                                VerticalOptions="Center"
                                HorizontalOptions="Center">
-            <!--ปุ่มแก้ไขเมนู-->
+            <!-- ปุ่มแก้ไขเมนู -->
             <Button x:Name="btnSaveMenu"
                     Text="บันทึก"
                     Margin="20"
                     WidthRequest="100"
                     Clicked="btnSaveMenu_Clicked" />
-            <!--ปุ่มแก้ไขเมนู-->
+            <!-- ปุ่มแก้ไขเมนู -->
             <Button x:Name="btnDeleteMenu" 
                     Text="ลบเมนู"
                     BackgroundColor="Red"

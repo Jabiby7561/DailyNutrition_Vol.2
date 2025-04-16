@@ -14,9 +14,9 @@ namespace DailyNutrition.Models
         public float Carbohydrates { get; set; }
         public float Fat { get; set; }
         public string ImagePath { get; set; }
-
-        public float Energy => CalculateEnergy();
         
+        public float Energy => CalculateEnergy();
+
         public float CalculateEnergy()
         {
             // สมมติว่าพลังงาน = โปรตีน * 4 + คาร์โบไฮเดรต * 4 + ไขมัน * 9

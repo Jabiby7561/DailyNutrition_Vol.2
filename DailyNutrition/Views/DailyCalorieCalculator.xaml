@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DailyNutrition.DailyCalorieCalculator"
+             Title="คำนวณ BMR และ TDEE">
+    
+    <!-- ส่วนหัว : Title -->
+    <NavigationPage.TitleView>
+        <Label x:Name="pageTitleView"
+               Text="การบริโภคแคลอรี่ของร่างกาย"
+               TextColor="White"
+               FontSize="20"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"/>
+    </NavigationPage.TitleView>
+
+    <!-- ส่วนหัว : ปุ่มย้อยกลั -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnBack"
+                     Clicked="btnBack_Clicked">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="AwesomeSoild"
+                                 Glyph="&#x2039;"
+                                 Size="30"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+
+    <VerticalStackLayout Padding="20" 
+                         Spacing="10">
+        <!-- ส่วนหัว -->
+        <!--<Label Text="การบริโภคแคลอรี่ของร่างกาย" 
+                   FontSize="19" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />-->
+
+        <!-- เพศ -->
+        <Label Text="เพศ" 
+               FontSize="18"
+               FontAttributes="Bold" />
+        <StackLayout Orientation="Horizontal" 
+                     HorizontalOptions="Center" 
+                     Spacing="10">
+            <Button x:Name="MaleButton"
+                    Text="ชาย"  
+                    BackgroundColor="LightGray" 
+                    Clicked="OnGenderSelected" />
+            <Button x:Name="FemaleButton"
+                    Text="หญิง"  
+                    BackgroundColor="LightGray" 
+                    Clicked="OnGenderSelected" />
+        </StackLayout>
+
+        <!-- น้ำหนัก -->
+        <Label Text="น้ำหนักตัว (kg.)" 
+               FontSize="18"
+               FontAttributes="Bold"/>
+        <Entry x:Name="WeightEntry" 
+               Placeholder="ใส่น้ำหนัก" 
+               Keyboard="Numeric" 
+               TextChanged="OnInputChanged" />
+
+        <!-- ส่วนสูง -->
+        <Label Text="ส่วนสูง (cm.)" 
+               FontSize="18"
+               FontAttributes="Bold"/>
+        <Entry x:Name="HeightEntry"
+               Placeholder="ใส่ส่วนสูง"
+               Keyboard="Numeric"
+               TextChanged="OnInputChanged" />
+
+        <!-- อายุ -->
+        <Label Text="อายุ (ปี)" 
+               FontSize="18"
+               FontAttributes="Bold"/>
+        <Entry x:Name="AgeEntry" 
+               Placeholder="ใส่อายุ"
+               Keyboard="Numeric" 
+               TextChanged="OnInputChanged" />
+
+        <!-- ผลลัพธ์ BMR -->
+        <Label Text="BMR (kcal)"
+               FontSize="18" 
+               FontAttributes="Bold" />
+        <Label x:Name="BmrResultLabel" 
+               Text="BMR: ......................." 
+               FontSize="16" 
+               TextColor="Gray" />
+
+        <!-- กิจกรรม -->
+        <Label Text="ระดับกิจกรรม" 
+               FontSize="18" 
+               FontAttributes="Bold" />
+        <Picker x:Name="ActivityPicker" 
+                Title="เลือกกิจกรรม" 
+                SelectedIndexChanged="OnInputChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>ไม่ออกกำลังกาย</x:String>
+                    <x:String>ออกกำลังกายเบา ๆ (1-2 ครั้ง/สัปดาห์)</x:String>
+                    <x:String>ออกกำลังกายปานกลาง (3-5 ครั้ง/สัปดาห์)</x:String>
+                    <x:String>ออกกำลังกายหนัก (6-7 ครั้ง/สัปดาห์)</x:String>
+                    <x:String>ออกกำลังกายหนักมาก (ทุกวัน, อาชีพแรงงาน)</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <!-- ผลลัพธ์ TDEE -->
+        <Label Text="TDEE (kcal)" 
+                   FontSize="18" 
+                   FontAttributes="Bold" />
+        <Label x:Name="TdeeResultLabel" 
+               Text="TDEE: ......................." 
+               FontSize="16" 
+               TextColor="Gray" />
+
+        <!-- ปุ่มบันทึก -->
+        <Button x:Name="btnSaveProfile" 
+                Text="บันทึกข้อมูล"
+                BackgroundColor="#34C759"
+                TextColor="White"
+                Clicked="btnSaveProfile_Clicked" />
+    </VerticalStackLayout>
+</ContentPage>

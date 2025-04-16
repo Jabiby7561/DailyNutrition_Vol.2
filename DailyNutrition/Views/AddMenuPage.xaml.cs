@@ -14,6 +14,28 @@ public partial class AddMenuPage : ContentPage
         BindingContext = new ClassMenu();
     }
 
+    private void OnInputChanged(object sender, TextChangedEventArgs e)
+    {
+        CalculateCalorie();
+    }
+
+    // ฟังก์ชันคำนวณพลังงาน
+    private void CalculateCalorie() 
+    {
+        // ตรวจสอบข้อมูลโภชนาการ
+        if (!float.TryParse(ProteinEntry.Text, out float protein) ||
+            !float.TryParse(CarbohydratesEntry.Text, out float carbs) ||
+            !float.TryParse(FatEntry.Text, out float fat))
+        {
+            EnergyLabel.Text = "พลังงานทั้งหมด : 0.00 cal";
+            return;
+        }
+
+        // คำนวณพลังงาน
+        float energy = protein * 4 + carbs * 4 + fat * 9;
+        EnergyLabel.Text = $"พลังงานทั้งหมด : {energy:F2} cal";
+    }
+
     // ปุ่มเพิ่มเมนู
     private async void btnAddMenu_Clicked(object sender, EventArgs e)
     {

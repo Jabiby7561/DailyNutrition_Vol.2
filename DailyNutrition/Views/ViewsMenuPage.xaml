@@ -8,7 +8,7 @@
     <Grid RowDefinitions="50,50,*,80"
           Margin="10">
         
-        <!--แทบค้นหาเมนู-->
+        <!-- แทบค้นหาเมนู -->
         <Border Grid.Row="0"
                 Stroke="Gray"
                 StrokeThickness="1"
@@ -16,12 +16,12 @@
                 HeightRequest="40"
                 Margin="10">
             
-            <!--ไว้ทำให้ขอบ Border มน-->
+            <!-- ไว้ทำให้ขอบ Border มน -->
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="10" />
             </Border.StrokeShape>
             
-            <!--คำสั่ง SearchBar-->
+            <!-- คำสั่ง SearchBar -->
             <SearchBar x:Name="MenuSearchBar"
                        Placeholder="ค้นหาเมนู"
                        PlaceholderColor="Gray"
@@ -33,7 +33,7 @@
                        HorizontalOptions="Fill"/>
         </Border>
 
-        <!--List รายการเมนู-->
+        <!-- List รายการเมนู -->
         <Label Grid.Row="1"
                Text="รายการเมนู"
                FontSize="22"
@@ -104,7 +104,7 @@
 
                                 <Label Grid.Row="4" 
                                        Grid.Column="1"
-                                       Text="{Binding Energy, StringFormat='พลังงานทั้ทั้งหมด : {0:F2} แคลอรี่'}"   
+                                       Text="{Binding Energy, StringFormat='พลังงานทั้งหมด : {0:F2} แคลอรี่'}"   
                                        FontSize="14"
                                        TextColor="#4a4a4a"/>
                                 
@@ -136,7 +136,7 @@
             </CollectionView>
         </Border>
 
-        <!--ปุ่มพาไปหน้าเพิ่มเมนู-->
+        <!-- ปุ่มพาไปหน้าเพิ่มเมนู -->
         <Button x:Name="btnAddMenuPage"
                 Grid.Row="3"
                 Text="เพิ่มเมนู"

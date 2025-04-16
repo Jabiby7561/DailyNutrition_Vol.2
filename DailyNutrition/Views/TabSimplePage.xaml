@@ -19,7 +19,7 @@
         </ToolbarItem>
     </TabbedPage.ToolbarItems>
 
-    <!--หน้าวันนี้กินอะไร-->
+    <!-- หน้าวันนี้กินอะไร -->
     <NavigationPage Title="วันนี้กินอะไร">
         <x:Arguments>
             <views:TodayMenuPage/>
@@ -32,7 +32,7 @@
         </NavigationPage.IconImageSource>
     </NavigationPage>
 
-    <!--หน้าสรุปผล-->
+    <!-- หน้าสรุปผล -->
     <NavigationPage Title="สรุปผล">
         <x:Arguments>
             <views:ConcludePage/>
@@ -45,7 +45,7 @@
         </NavigationPage.IconImageSource>
     </NavigationPage>
 
-    <!--หน้าเพิ่มหรือแก้ไขเมนู-->
+    <!-- หน้าเพิ่มหรือแก้ไขเมนู -->
     <NavigationPage Title="เพิ่มหรือแก้ไขเมนู">
         <x:Arguments>
             <views:ViewsMenuPage/>

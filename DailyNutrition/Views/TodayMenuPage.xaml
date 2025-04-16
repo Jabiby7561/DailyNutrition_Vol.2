@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DailyNutrition.Views.TodayMenuPage"
              Title="วันนี้กินอะไร">
+    
     <VerticalStackLayout>
         <ScrollView HorizontalOptions="Center"
                     Margin="20">
@@ -16,4 +17,5 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
+    
 </ContentPage>

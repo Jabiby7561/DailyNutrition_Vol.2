@@ -30,10 +30,10 @@ public partial class ViewsMenuPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        LoadNotes();
+        LoadMenu();
     }
 
-    private async void LoadNotes()
+    private async void LoadMenu()
     {
         FoodMenu = new ObservableCollection<ClassMenu>(await App.MenuDatabase.GetAllMenuAsync());
         ViewsMenu.ItemsSource = FoodMenu;

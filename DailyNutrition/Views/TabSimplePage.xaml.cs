@@ -9,6 +9,6 @@ public partial class TabSimplePage : TabbedPage
 
     private void btnProfileSetting_Clicked(object sender, EventArgs e)
     {
-		return;
+        App.Current.MainPage = new NavigationPage(new DailyCalorieCalculator());
     }
 }
