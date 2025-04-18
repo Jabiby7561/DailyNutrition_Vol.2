@@ -127,6 +127,8 @@ namespace DailyNutrition
             // บันทึกลงฐานข้อมูล
             await App.UserDatabase.AddCalculationAsync(calculation);
             await DisplayAlert("สำเร็จ", "บันทึกข้อมูลสำเร็จ!", "ตกลง");
+
+            App.Current.MainPage = new TabSimplePage();
         }
 
         private async void btnBack_Clicked(object sender, EventArgs e)
