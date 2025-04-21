@@ -1,4 +1,5 @@
-using DailyNutrition.Models;
+﻿using DailyNutrition.Models;
+using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
 
 namespace DailyNutrition.Views;
@@ -10,19 +11,29 @@ public partial class TodayMenuPage : ContentPage
 	{
 		InitializeComponent();
         FoodMenu = new ObservableCollection<ClassMenu>();
-        ViewsMenu.ItemsSource = FoodMenu;
+        TodayMenu.ItemsSource = FoodMenu;
     }
 
-    private async void ViewsMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void TodayMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (e.CurrentSelection[0] != null)
+        double totalEnergy = 0;
+        try 
         {
-            ClassMenu menus = e.CurrentSelection[0] as ClassMenu;
-            App.Current.MainPage = new NavigationPage(new EditMenuPage()
-            //await Navigation.PushAsync(new EditMenuPage()
+            foreach (var item in TodayMenu.SelectedItems)
             {
-                BindingContext = menus
-            });
+                if (item is ClassMenu menu)
+                {
+                    totalEnergy += menu.Energy;
+                }
+            }
+
+            TotalEnergyLabel.Text = $"Total Energy : {totalEnergy} cal";
+            return;
+        }
+        catch (Exception ex)
+        {
+            // Handle exception
+            await DisplayAlert("เกิดข้อผิดพลาด!", $"ไม่สามารถคำนวนแคลอรี่ได้: {ex.Message}", "ตกลง");
         }
     }
 
@@ -35,7 +46,7 @@ public partial class TodayMenuPage : ContentPage
     private async void LoadMenu()
     {
         FoodMenu = new ObservableCollection<ClassMenu>(await App.MenuDatabase.GetAllMenuAsync());
-        ViewsMenu.ItemsSource = FoodMenu;
+        TodayMenu.ItemsSource = FoodMenu;
         OnPropertyChanged(nameof(ClassMenu));
     }
 }

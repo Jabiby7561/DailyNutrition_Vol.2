@@ -43,9 +43,9 @@
                 StrokeShape="RoundRectangle 10"
                 Margin="5">
 
-            <CollectionView x:Name="ViewsMenu"
+            <CollectionView x:Name="TodayMenu"
                             SelectionMode="Multiple"
-                            SelectionChanged="ViewsMenu_SelectionChanged">
+                            SelectionChanged="TodayMenu_SelectionChanged">
 
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
@@ -138,7 +138,7 @@
         <!-- แสดงผลลัพธ์พลังงานที่จะได้รับทั้งหมด -->
         <Label x:Name="TotalEnergyLabel"
                Grid.Row="3"
-               Text="Total Energy: .........."
+               Text="Total Energy : 0 cal"
                FontAttributes="Bold"
                FontSize="20"
                HorizontalOptions="Start"
