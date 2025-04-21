@@ -79,7 +79,7 @@
                Keyboard="Numeric" 
                TextChanged="OnInputChanged" />
 
-        <!-- ผลลัพธ์ BMR -->
+        <!-- แสดงผลลัพธ์ BMR -->
         <Label Text="BMR (kcal)"
                FontSize="18" 
                FontAttributes="Bold" />
@@ -106,7 +106,7 @@
             </Picker.ItemsSource>
         </Picker>
 
-        <!-- ผลลัพธ์ TDEE -->
+        <!-- แสดงผลลัพธ์ TDEE -->
         <Label Text="TDEE (kcal)" 
                    FontSize="18" 
                    FontAttributes="Bold" />

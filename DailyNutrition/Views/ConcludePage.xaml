@@ -4,14 +4,15 @@
              x:Class="DailyNutrition.Views.ConcludePage"
              Title="สรุปผล">
 
-    <VerticalStackLayout>
-        <Label 
-            Text="This is Conclude Page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center"
-            Margin="20"/>
+    <Grid RowDefinitions="50,*,80"
+          Margin="10">
+        <Label Grid.Row="0"
+               Text="This is Conclude Page"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"
+               Margin="10"/>
 
-        <Border Grid.Row="2"
+        <Border Grid.Row="1"
                 Stroke="Gray"
                 StrokeThickness="1"
                 StrokeShape="RoundRectangle 10"
@@ -98,6 +99,7 @@
         </Border>
 
         <Button x:Name="btnDeleteDatabase"
+                Grid.Row="3"
                 Text="ลบฐานข้อมูล"
                 BackgroundColor="Red"
                 HorizontalOptions="Center"
@@ -105,6 +107,6 @@
                 Clicked="btnDeleteDatabase_Clicked"
                 Margin="20"/>
 
-    </VerticalStackLayout>
+    </Grid>
     
 </ContentPage>

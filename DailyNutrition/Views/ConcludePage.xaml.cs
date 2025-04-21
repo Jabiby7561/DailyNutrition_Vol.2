@@ -16,10 +16,10 @@ public partial class ConcludePage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        LoadMenu();
+        LoadRecord();
     }
 
-    private async void LoadMenu()
+    private async void LoadRecord()
     {
         RecordInfo = new ObservableCollection<CalculationRecord>(await App.UserDatabase.GetAllRecordAsync());
         ViewsRecord.ItemsSource = RecordInfo;

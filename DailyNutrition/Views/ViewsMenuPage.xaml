@@ -148,4 +148,5 @@
                 CommandParameter="{Binding .}"
                 Clicked="btnAddMenuPage_Clicked"/>
     </Grid>
+    
 </ContentPage>
