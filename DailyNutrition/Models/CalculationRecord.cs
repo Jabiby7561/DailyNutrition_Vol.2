@@ -18,6 +18,6 @@ namespace DailyNutrition
         public float BMR { get; set; }
         public float TDEE { get; set; }
         public string ActivityLevel { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime RecordCreated { get; set; }
     }
 }

@@ -121,7 +121,7 @@ namespace DailyNutrition
                 BMR = bmr,
                 TDEE = tdee,
                 ActivityLevel = ActivityPicker.SelectedItem.ToString(),
-                DateCreated = DateTime.Now
+                RecordCreated = DateTime.Now
             };
 
             // บันทึกลงฐานข้อมูล

@@ -145,7 +145,7 @@
                 WidthRequest="150"
                 CornerRadius="20"
                 VerticalOptions="End"
-                Margin="20"
+                Margin="10"
                 CommandParameter="{Binding .}"
                 Clicked="btnAddMenuPage_Clicked"/>
     </Grid>

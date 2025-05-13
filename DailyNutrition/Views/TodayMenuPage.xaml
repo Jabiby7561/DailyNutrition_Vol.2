@@ -4,7 +4,7 @@
              x:Class="DailyNutrition.Views.TodayMenuPage"
              Title="วันนี้กินอะไร">
 
-    <Grid RowDefinitions="50,50,*,80"
+    <Grid RowDefinitions="50,50,*,40,80"
           Margin="10">
 
         <!-- แทบค้นหาเมนู -->
@@ -159,6 +159,18 @@
                HorizontalOptions="Start"
                VerticalOptions="Center"
                Margin="10"/>
+
+        <!-- ปุ่มบันทึกพลังงานแคลอรี่ลงในฐานข้อมูล -->
+        <Button x:Name="btnAddEnergy"
+                Grid.Row="4"
+                Text="บันทึกแคลอรี่ในวันนี้"
+                BackgroundColor="Blue"
+                WidthRequest="175"
+                CornerRadius="20"
+                VerticalOptions="End"
+                Margin="10"
+                CommandParameter="{Binding .}"
+                Clicked="btnAddEnergy_Clicked"/>
     </Grid>
     
 </ContentPage>

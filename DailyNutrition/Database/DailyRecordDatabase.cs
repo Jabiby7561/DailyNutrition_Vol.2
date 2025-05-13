@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using SQLite;
 using DailyNutrition.Models;
+using SQLite;
 
 namespace DailyNutrition.Database
 {
-    public class UserRecordDatabase
+    public class DailyRecordDatabase
     {
         public SQLiteAsyncConnection _database;
 
@@ -21,23 +22,24 @@ namespace DailyNutrition.Database
                 Constants.DatabasePath,
                 Constants.Flags);
 
-            // สร้างตารางสำหรับ CalculationRecord
-            var result = await _database.CreateTableAsync<CalculationRecord>();
+            // สร้างตารางสำหรับ DailyRecord
+            var result = await _database.CreateTableAsync<DailyRecord>();
         }
 
-        // ดึงบันทึกข้อมูลผู้ใช้ทั้งหมดจากฐานข้อมูล
-        public async Task<List<CalculationRecord>> GetAllRecordAsync()
+        // ดึงข้อมูลแคลอรี่ที่บันทึกในแต่ละวันทั้งหมดจากฐานข้อมูล
+        public async Task<List<DailyRecord>> GetAllDateAsync()
         {
             await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
-            return await _database.Table<CalculationRecord>().ToListAsync();
+            return await _database.Table<DailyRecord>().ToListAsync();
         }
 
-        // เพิ่มบันทึกข้อมูลผู้ใช้ลงในฐานข้อมูล
-        public async Task<int> AddCalculationAsync(CalculationRecord record)
+        // เพิ่มข้อมูลแคลอรี่ที่บันทึกในแต่ละวันลงในฐานข้อมูล
+        public async Task<int> AddDateAsync(DailyRecord daily)
         {
             await Init(); // ตรวจสอบว่าฐานข้อมูลพร้อมใช้งาน
-            return await _database.InsertAsync(record);
+            return await _database.InsertAsync(daily);
         }
 
     }
 }
+

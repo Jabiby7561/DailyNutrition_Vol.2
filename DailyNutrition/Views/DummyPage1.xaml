@@ -7,7 +7,7 @@
     <Grid RowDefinitions="50,*,80"
           Margin="10">
         <Label Grid.Row="0"
-               Text="This is Conclude Page"
+               Text="This is Dummy Page 1"
                VerticalOptions="Center" 
                HorizontalOptions="Center"
                Margin="10"/>

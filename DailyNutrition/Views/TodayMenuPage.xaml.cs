@@ -95,4 +95,40 @@ public partial class TodayMenuPage : ContentPage
         TodayMenu.ItemsSource = FoodMenu;
         OnPropertyChanged(nameof(ClassMenu));
     }
+
+    private async void btnAddEnergy_Clicked(object sender, EventArgs e)
+    {
+        // คัดกรองรายการเมนูที่ถูกเลือกจาก CollectionView
+        var selectedMenus = TodayMenu.SelectedItems.Cast<ClassMenu>().ToList();
+
+        // ตรวจสอบว่ามีเมนูถูกเลือกอยู่หรือไม่
+        if (!selectedMenus.Any())
+        {
+            await DisplayAlert("เกิดข้อผิดพลาด!", "กรุณาเลือกอย่างน้อย 1 เมนู", "ตกลง");
+            return;
+        }
+
+        // คำนวณพลังงานรวมจากรายการที่ถูกเลือก
+        double totalEnergy = selectedMenus.Sum(menu => menu.Energy * menu.Quantity);
+
+        // สร้าง DailyRecord สำหรับบันทึกในฐานข้อมูล
+        DailyRecord dailyRecord = new DailyRecord
+        {
+            DailyEnergy = (float)totalEnergy,
+            DateCreated = DateTime.Now
+        };
+
+        try
+        {
+            // บันทึกลงฐานข้อมูลด้วย SQLite
+            await App.DailyDatabase.AddDateAsync(dailyRecord);
+            await DisplayAlert("สำเร็จ", "บันทึกแคลอรี่ในวันนี้เรียบร้อยแล้ว", "ตกลง");
+            TotalEnergyLabel.Text = "พลังงานทั้งหมดที่ได้รับในวันนี้ : 0 cal";
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("เกิดข้อผิดพลาด!", $"เกิดข้อผิดพลาดในการบันทึกข้อมูล: {ex.Message}", "ตกลง");
+        }
+    }
+
 }

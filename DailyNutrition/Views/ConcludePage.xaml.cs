@@ -5,12 +5,12 @@ namespace DailyNutrition.Views;
 
 public partial class ConcludePage : ContentPage
 {
-    ObservableCollection<CalculationRecord> RecordInfo { get; set; }
+    ObservableCollection<DailyRecord> DailyInfo { get; set; }
     public ConcludePage()
 	{
 		InitializeComponent();
-        RecordInfo = new ObservableCollection<CalculationRecord>();
-        ViewsRecord.ItemsSource = RecordInfo;
+        DailyInfo = new ObservableCollection<DailyRecord>();
+        ViewsRecord.ItemsSource = DailyInfo;
     }
 
     protected override void OnAppearing()
@@ -21,8 +21,8 @@ public partial class ConcludePage : ContentPage
 
     private async void LoadRecord()
     {
-        RecordInfo = new ObservableCollection<CalculationRecord>(await App.UserDatabase.GetAllRecordAsync());
-        ViewsRecord.ItemsSource = RecordInfo;
-        OnPropertyChanged(nameof(CalculationRecord));
+        DailyInfo = new ObservableCollection<DailyRecord>(await App.DailyDatabase.GetAllDateAsync());
+        ViewsRecord.ItemsSource = DailyInfo;
+        OnPropertyChanged(nameof(DailyRecord));
     }
 }

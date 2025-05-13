@@ -43,7 +43,7 @@ namespace DailyNutrition.Database
         //                          .FirstOrDefaultAsync();
         //}
 
-        // เพิ่มเมนูใหม่ลงในฐานข้อมูล
+        // อัปเดตเมนูในฐานข้อมูล
         public async Task<int> AddMenuAsync(ClassMenu menu)
         {
             await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
