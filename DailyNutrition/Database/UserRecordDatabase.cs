@@ -7,7 +7,7 @@ using DailyNutrition.Models;
 
 namespace DailyNutrition.Database
 {
-    public class RecordDatabase
+    public class UserRecordDatabase
     {
         public SQLiteAsyncConnection _database;
 

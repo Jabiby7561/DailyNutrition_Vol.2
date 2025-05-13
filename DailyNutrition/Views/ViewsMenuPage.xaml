@@ -55,7 +55,8 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border BackgroundColor="LightGreen"
+                        <Border x:Name="ViewsMenuBorder"
+                                BackgroundColor="LightGreen"
                                 Stroke="WhiteSmoke"
                                 StrokeThickness="1"
                                 StrokeShape="RoundRectangle 10"

@@ -54,14 +54,25 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border BackgroundColor="LightGreen"
+                        <Border x:Name="TodayMenuBorder"
+                                BackgroundColor="LightGreen"
                                 Stroke="WhiteSmoke"
                                 StrokeThickness="1"
                                 StrokeShape="RoundRectangle 10"
                                 Padding="5">
 
+                            <!-- DataTrigger เปลี่ยนสีเมื่อถูกเลือก -->
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border" 
+                                             Binding="{Binding IsSelected}" 
+                                             Value="True">
+                                    <Setter Property="BackgroundColor" 
+                                            Value="Orange"/>
+                                </DataTrigger>
+                            </Border.Triggers>
+
                             <Grid RowDefinitions="*,*,*,*,*"
-                                  ColumnDefinitions="75,*,75"
+                                  ColumnDefinitions="75,*,80"
                                   RowSpacing="5"
                                   ColumnSpacing="10">
 
@@ -107,18 +118,22 @@
                                        FontSize="14"
                                        TextColor="#4a4a4a"/>
 
-
-                                <Label x:Name="btnEditMenu"
-                                       Grid.Row="0"
-                                       Grid.Column="2"
-                                       Grid.RowSpan="5"
-                                       Text="&#xf304;"
-                                       TextColor="#007AFF"
-                                       FontFamily="AwesomeSoild"
-                                       FontSize="30"
-                                       BackgroundColor="Transparent"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center"/>
+                                <VerticalStackLayout Grid.Row="0" 
+                                                     Grid.Column="2"
+                                                     Grid.RowSpan="5"
+                                                     Spacing="10">
+                                    <Label Text="{Binding Quantity, StringFormat='จำนวน : {0}'}"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="End"/>
+                                    <HorizontalStackLayout>
+                                        <Stepper Minimum="1" 
+                                                 Maximum="10" 
+                                                 Increment="1"
+                                                 Value="{Binding Quantity, Mode=TwoWay}"
+                                                 WidthRequest="80"
+                                                 ValueChanged="Stepper_ValueChanged"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
 
                             </Grid>
                         </Border>
@@ -138,12 +153,12 @@
         <!-- แสดงผลลัพธ์พลังงานที่จะได้รับทั้งหมด -->
         <Label x:Name="TotalEnergyLabel"
                Grid.Row="3"
-               Text="Total Energy : 0 cal"
+               Text="พลังงานทั้งหมดที่ได้รับในวันนี้ : 0 cal"
                FontAttributes="Bold"
-               FontSize="20"
+               FontSize="18"
                HorizontalOptions="Start"
                VerticalOptions="Center"
-               Margin="20"/>
+               Margin="10"/>
     </Grid>
     
 </ContentPage>

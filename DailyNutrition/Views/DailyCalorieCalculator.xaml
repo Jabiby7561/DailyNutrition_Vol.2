@@ -29,12 +29,6 @@
 
     <VerticalStackLayout Padding="20" 
                          Spacing="10">
-        <!-- ส่วนหัว -->
-        <!--<Label Text="การบริโภคแคลอรี่ของร่างกาย" 
-                   FontSize="19" 
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center" />-->
-
         <!-- เพศ -->
         <Label Text="เพศ" 
                FontSize="18"
@@ -88,6 +82,9 @@
                FontSize="16" 
                TextColor="Gray" />
 
+        <!-- Label ให้หน้า UI เว้นวรรค -->
+        <Label/>
+
         <!-- กิจกรรม -->
         <Label Text="ระดับกิจกรรม" 
                FontSize="18" 
@@ -115,11 +112,21 @@
                FontSize="16" 
                TextColor="Gray" />
 
+        <!-- Label ให้หน้า UI เว้นวรรค -->
+        <Label/>
+        
         <!-- ปุ่มบันทึก -->
         <Button x:Name="btnSaveProfile" 
                 Text="บันทึกข้อมูล"
                 BackgroundColor="#34C759"
                 TextColor="White"
                 Clicked="btnSaveProfile_Clicked" />
+
+        <!-- ปุ่มลบฐานข้อมูล -->
+        <Button x:Name="btnDeleteDatabase"
+                Text="ลบฐานข้อมูล"
+                BackgroundColor="Red"
+                TextColor="White"
+                Clicked="btnDeleteDatabase_Clicked" />
     </VerticalStackLayout>
 </ContentPage>

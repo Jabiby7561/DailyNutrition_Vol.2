@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DailyNutrition.Views.ConcludePage"
-             Title="สรุปผล">
+             x:Class="DailyNutrition.Views.DummyPage1"
+             Title="DummyPage1">
 
     <Grid RowDefinitions="50,*,80"
           Margin="10">
@@ -99,5 +99,5 @@
         </Border>
 
     </Grid>
-    
+
 </ContentPage>
