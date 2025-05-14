@@ -4,7 +4,7 @@
              x:Class="DailyNutrition.Views.TodayMenuPage"
              Title="วันนี้กินอะไร">
 
-    <Grid RowDefinitions="50,50,*,40,80"
+    <Grid RowDefinitions="50,50,*,40,40,40,80"
           Margin="10">
 
         <!-- แทบค้นหาเมนู -->
@@ -150,10 +150,30 @@
             </CollectionView>
         </Border>
 
-        <!-- แสดงผลลัพธ์พลังงานที่จะได้รับทั้งหมด -->
-        <Label x:Name="TotalEnergyLabel"
+        <!-- แสดงผลลัพธ์พลังงานที่ร่างกายต้องการ -->
+        <Label x:Name="RequiredEnergyLabel"
                Grid.Row="3"
+               Text="พลังงานที่ร่างกายต้องการ : 0 cal"
+               FontAttributes="Bold"
+               FontSize="18"
+               HorizontalOptions="Start"
+               VerticalOptions="Center"
+               Margin="10"/>
+
+        <!-- แสดงผลลัพธ์พลังงานที่จะได้รับทั้งหมดในวันนั้น -->
+        <Label x:Name="TotalEnergyLabel"
+               Grid.Row="4"
                Text="พลังงานทั้งหมดที่ได้รับในวันนี้ : 0 cal"
+               FontAttributes="Bold"
+               FontSize="18"
+               HorizontalOptions="Start"
+               VerticalOptions="Center"
+               Margin="10"/>
+
+        <!-- แสดงผลลัพธ์พลังงานที่จะได้รับเกินมา -->
+        <Label x:Name="OverEnergyLabel"
+               Grid.Row="5"
+               Text="พลังงานทั้งหมดที่เกินมา : 0 cal"
                FontAttributes="Bold"
                FontSize="18"
                HorizontalOptions="Start"
@@ -162,7 +182,7 @@
 
         <!-- ปุ่มบันทึกพลังงานแคลอรี่ลงในฐานข้อมูล -->
         <Button x:Name="btnAddEnergy"
-                Grid.Row="4"
+                Grid.Row="6"
                 Text="บันทึกแคลอรี่ในวันนี้"
                 BackgroundColor="Blue"
                 WidthRequest="175"

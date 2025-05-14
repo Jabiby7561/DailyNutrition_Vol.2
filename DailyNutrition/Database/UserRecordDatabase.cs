@@ -32,6 +32,14 @@ namespace DailyNutrition.Database
             return await _database.Table<CalculationRecord>().ToListAsync();
         }
 
+        public async Task<CalculationRecord> GetLatestRecordAsync()
+        {
+            await Init(); // ตรวจสอบให้แน่ใจว่าฐานข้อมูลถูกเตรียมไว้แล้ว
+            return await _database.Table<CalculationRecord>()
+                .OrderByDescending(record => record.RecordCreated) // ใช้ RecordCreated แทน Date
+                .FirstOrDefaultAsync();
+        }
+
         // เพิ่มบันทึกข้อมูลผู้ใช้ลงในฐานข้อมูล
         public async Task<int> AddCalculationAsync(CalculationRecord record)
         {
