@@ -1,6 +1,5 @@
 ﻿using DailyNutrition.Models;
 using Microsoft.Maui.Controls;
-using System.Linq;
 using System.Collections.ObjectModel;
 
 namespace DailyNutrition.Views;
@@ -152,6 +151,19 @@ public partial class TodayMenuPage : ContentPage
         catch (Exception ex)
         {
             await DisplayAlert("เกิดข้อผิดพลาด!", $"เกิดข้อผิดพลาดในการบันทึกข้อมูล: {ex.Message}", "ตกลง");
+        }
+    }
+
+    private async void MenuSearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(e.NewTextValue))
+        {
+            TodayMenu.ItemsSource = new ObservableCollection<ClassMenu>(await App.MenuDatabase.GetAllMenuAsync());
+        }
+        else
+        {
+            var filteredMenu = await App.MenuDatabase.SearchMenuAsync(e.NewTextValue);
+            TodayMenu.ItemsSource = new ObservableCollection<ClassMenu>(filteredMenu);
         }
     }
 

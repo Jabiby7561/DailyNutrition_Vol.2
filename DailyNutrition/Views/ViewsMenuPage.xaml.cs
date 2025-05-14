@@ -45,4 +45,18 @@ public partial class ViewsMenuPage : ContentPage
         App.Current.MainPage = new NavigationPage(new AddMenuPage());
         //await Navigation.PushAsync(new AddMenuPage());
     }
+
+    private async void MenuSearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(e.NewTextValue))
+        {
+            FoodMenu = new ObservableCollection<ClassMenu>(await App.MenuDatabase.GetAllMenuAsync());
+        }
+        else
+        {
+            var filteredMenu = await App.MenuDatabase.SearchMenuAsync(e.NewTextValue);
+            FoodMenu = new ObservableCollection<ClassMenu>(filteredMenu);
+        }
+        ViewsMenu.ItemsSource = FoodMenu;
+    }
 }

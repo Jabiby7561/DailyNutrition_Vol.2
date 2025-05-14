@@ -79,7 +79,7 @@
                                        TextColor="#4a4a4a"/>
 
                                 <Label Grid.Row="8" 
-                                       Text="{Binding DateCreated, StringFormat='วันที่บันทึก : {0} '}"   
+                                       Text="{Binding RecordCreated, StringFormat='วันที่บันทึก : {0} '}"   
                                        FontSize="14"
                                        TextColor="#4a4a4a"/>
 

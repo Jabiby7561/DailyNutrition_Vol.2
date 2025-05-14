@@ -63,5 +63,15 @@ namespace DailyNutrition.Database
             await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
             return await _database.DeleteAsync(id);
         }
+
+        // ค้นหาข้อมูลเมนูจากฐานข้อมูล
+        public async Task<List<ClassMenu>> SearchMenuAsync(string keyword)
+        {
+            await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
+            return await _database.Table<ClassMenu>()
+                .Where(m => m.Name.ToLower().Contains(keyword.ToLower()))
+                .ToListAsync();
+        }
+
     }
 }

@@ -30,7 +30,8 @@
                        FontSize="Medium"
                        CancelButtonColor="Gray"
                        HorizontalTextAlignment="Start"
-                       HorizontalOptions="Fill"/>
+                       HorizontalOptions="Fill"
+                       TextChanged="MenuSearchBar_TextChanged"/>
         </Border>
 
         <!-- List รายการเมนู -->
