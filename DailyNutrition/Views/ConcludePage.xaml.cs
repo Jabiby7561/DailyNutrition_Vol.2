@@ -14,9 +14,12 @@ public partial class ConcludePage : ContentPage
         BindingContext = this;
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
+        var viewData = new ViewData();
+        await viewData.LoadDataAsync();
+        BindingContext = viewData;
         LoadRecord();
     }
 

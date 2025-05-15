@@ -26,9 +26,9 @@
             <chart:SfCartesianChart x:Name="MonthlyChartView"
                                     Margin="5">
 
-                <chart:SfCartesianChart.BindingContext>
+                <!--<chart:SfCartesianChart.BindingContext>
                     <local:ViewData/>
-                </chart:SfCartesianChart.BindingContext>
+                </chart:SfCartesianChart.BindingContext>-->
 
                 <chart:ColumnSeries x:Name="WeeklyChartView" 
                                     ItemsSource="{Binding DailyView}"

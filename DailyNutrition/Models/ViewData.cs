@@ -9,49 +9,34 @@ namespace DailyNutrition.Models
 {
     public class ViewData
     {
-        public List<DailyRecord> DailyView { get; set; } = new List<DailyRecord>();
+        public List<DailyRecord> DailyView { get; set; } = new();
 
-        //public ViewData() 
-        //{
-        //    DailyView = new List<DailyRecord>() 
-        //    {
-        //        new DailyRecord
-        //        {
-        //            DateId = 1,
-        //            DateLabel = "2023-10-01",
-        //            DailyEnergy = 2000,
-        //            DateCreated = DateTime.Now
-        //        },
-        //        new DailyRecord
-        //        {
-        //            DateId = 2,
-        //            DateLabel = "2023-10-02",
-        //            DailyEnergy = 2500,
-        //            DateCreated = DateTime.Now
-        //        },
-        //        new DailyRecord
-        //        {
-        //            DateId = 3,
-        //            DateLabel = "2023-10-03",
-        //            DailyEnergy = 1800,
-        //            DateCreated = DateTime.Now
-        //        },
-        //        new DailyRecord 
-        //        {
-        //            DateId = 4,
-        //            DateLabel = "2023-10-04",
-        //            DailyEnergy = 2200,
-        //            DateCreated = DateTime.Now
-        //        },
-        //        new DailyRecord
-        //        {
-        //            DateId = 5,
-        //            DateLabel = "2023-10-05",
-        //            DailyEnergy = 2100,
-        //            DateCreated = DateTime.Now
-        //        },
-        //    };
+        public ViewData()
+        {
+            LoadDataAsync();
+        }
+
+        public async Task LoadDataAsync()
+        {
+            var allRecords = await App.DailyDatabase.GetAllDateAsync();
+            if (allRecords == null || allRecords.Count == 0)
+                return;
+
+            var latestDate = allRecords.Max(r => r.DateCreated);
+            var startOfWeek = latestDate.Date.AddDays(-6);
+
+            var recentRecords = allRecords
+                .Where(r => r.DateCreated.Date >= startOfWeek && r.DateCreated.Date <= latestDate.Date)
+                .OrderBy(r => r.DateCreated)
+                .ToList();
+
+            foreach (var record in recentRecords)
+            {
+                record.DateLabel = record.DateCreated.ToString("yyyy-MM-dd");
+            }
+
+            DailyView = recentRecords;
+        }
 
     }
-    
 }
