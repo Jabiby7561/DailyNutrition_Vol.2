@@ -7,7 +7,7 @@ using SQLite;
 
 namespace DailyNutrition
 {
-    public class CalculationRecord
+    public class UserRecord
     {
         [PrimaryKey, AutoIncrement]
         public int RecordId { get; set; }

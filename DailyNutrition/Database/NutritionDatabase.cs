@@ -24,27 +24,27 @@ namespace DailyNutrition.Database
                 Constants.DatabasePath, 
                 Constants.Flags);
 
-            // สร้างตารางสำหรับ ClassMenu
-            var result = await _database.CreateTableAsync<ClassMenu>();
+            // สร้างตารางสำหรับ MenuRecord
+            var result = await _database.CreateTableAsync<MenuRecord>();
         }
 
         // ดึงข้อมูลเมนูทั้งหมดจากฐานข้อมูล
-        public async Task<List<ClassMenu>> GetAllMenuAsync()
+        public async Task<List<MenuRecord>> GetAllMenuAsync()
         {
             await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
-            return await _database.Table<ClassMenu>().ToListAsync();
+            return await _database.Table<MenuRecord>().ToListAsync();
         }
 
-        //public async Task<ClassMenu> GetMenuAsync(int menuid)
+        //public async Task<MenuRecord> GetMenuByIdAsync(int menuid)
         //{
         //    await Init();
-        //    return await _database.Table<ClassMenu>()
+        //    return await _database.Table<MenuRecord>()
         //                          .Where(n => n.MenuId == menuid)
         //                          .FirstOrDefaultAsync();
         //}
 
         // อัปเดตเมนูในฐานข้อมูล
-        public async Task<int> AddMenuAsync(ClassMenu menu)
+        public async Task<int> AddMenuAsync(MenuRecord menu)
         {
             await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
             if (menu.MenuId != 0)
@@ -58,17 +58,17 @@ namespace DailyNutrition.Database
         }
 
         // ลบข้อมูลเมนูออกจากฐานข้อมูล
-        public async Task<int> DeleteMenuAsync(ClassMenu id)
+        public async Task<int> DeleteMenuAsync(MenuRecord id)
         {
             await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
             return await _database.DeleteAsync(id);
         }
 
         // ค้นหาข้อมูลเมนูจากฐานข้อมูล
-        public async Task<List<ClassMenu>> SearchMenuAsync(string keyword)
+        public async Task<List<MenuRecord>> SearchMenuAsync(string keyword)
         {
             await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
-            return await _database.Table<ClassMenu>()
+            return await _database.Table<MenuRecord>()
                 .Where(m => m.Name.ToLower().Contains(keyword.ToLower()))
                 .ToListAsync();
         }

@@ -6,7 +6,7 @@ using SQLite;
 
 namespace DailyNutrition.Models
 {
-    public class ClassMenu : INotifyPropertyChanged
+    public class MenuRecord : INotifyPropertyChanged
     {
         [PrimaryKey, AutoIncrement]
         public int MenuId { get; set; }

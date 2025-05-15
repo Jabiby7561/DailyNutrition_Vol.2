@@ -21,27 +21,27 @@ namespace DailyNutrition.Database
                 Constants.DatabasePath,
                 Constants.Flags);
 
-            // สร้างตารางสำหรับ CalculationRecord
-            var result = await _database.CreateTableAsync<CalculationRecord>();
+            // สร้างตารางสำหรับ UserRecord
+            var result = await _database.CreateTableAsync<UserRecord>();
         }
 
         // ดึงบันทึกข้อมูลผู้ใช้ทั้งหมดจากฐานข้อมูล
-        public async Task<List<CalculationRecord>> GetAllRecordAsync()
+        public async Task<List<UserRecord>> GetAllRecordAsync()
         {
             await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
-            return await _database.Table<CalculationRecord>().ToListAsync();
+            return await _database.Table<UserRecord>().ToListAsync();
         }
 
-        public async Task<CalculationRecord> GetLatestRecordAsync()
+        public async Task<UserRecord> GetLatestRecordAsync()
         {
             await Init(); // ตรวจสอบให้แน่ใจว่าฐานข้อมูลถูกเตรียมไว้แล้ว
-            return await _database.Table<CalculationRecord>()
+            return await _database.Table<UserRecord>()
                 .OrderByDescending(record => record.RecordCreated) // ใช้ RecordCreated แทน Date
                 .FirstOrDefaultAsync();
         }
 
         // เพิ่มบันทึกข้อมูลผู้ใช้ลงในฐานข้อมูล
-        public async Task<int> AddCalculationAsync(CalculationRecord record)
+        public async Task<int> AddCalculationAsync(UserRecord record)
         {
             await Init(); // ตรวจสอบว่าฐานข้อมูลพร้อมใช้งาน
             return await _database.InsertAsync(record);

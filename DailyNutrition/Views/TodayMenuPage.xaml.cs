@@ -7,11 +7,11 @@ namespace DailyNutrition.Views;
 public partial class TodayMenuPage : ContentPage
 {
     public double currentTDEE = 0;
-    ObservableCollection<ClassMenu> FoodMenu { get; set; }
+    ObservableCollection<MenuRecord> FoodMenu { get; set; }
     public TodayMenuPage()
 	{
 		InitializeComponent();
-        FoodMenu = new ObservableCollection<ClassMenu>();
+        FoodMenu = new ObservableCollection<MenuRecord>();
         TodayMenu.ItemsSource = FoodMenu;
     }
 
@@ -36,7 +36,7 @@ public partial class TodayMenuPage : ContentPage
                     totalEnergy += menu.Energy * menu.Quantity;
                 }
             }
-            TotalEnergyLabel.Text = $"พลังงานทั้งหมดที่ได้รับในวันนี้ : {totalEnergy} cal";
+            TotalEnergyLabel.Text = $"พลังงานทั้งหมดที่ได้รับในวันนี้ : {totalEnergy:F2} cal";
             
             // คำนวณพลังงาน่ส่วนเกิน (ส่วนเกิน = received - required)
             double overEnergy = totalEnergy - (currentTDEE);
@@ -60,7 +60,7 @@ public partial class TodayMenuPage : ContentPage
         // สำหรับรายการที่เพิ่งถูกเลือก ให้ตั้งค่า Quantity จาก 0 เป็น 1 
         foreach (var item in e.CurrentSelection)
         {
-            if (item is ClassMenu menu)
+            if (item is MenuRecord menu)
             {
                 menu.IsSelected = true;
                 if (menu.Quantity == 0)
@@ -74,7 +74,7 @@ public partial class TodayMenuPage : ContentPage
         var deselectedItems = e.PreviousSelection.Except(e.CurrentSelection);
         foreach (var item in deselectedItems)
         {
-            if (item is ClassMenu menu)
+            if (item is MenuRecord menu)
             {
                 menu.IsSelected = false;
                 menu.Quantity = 0;
@@ -89,7 +89,7 @@ public partial class TodayMenuPage : ContentPage
         if (stepper == null) return;
 
         // ดึงข้อมูลเมนู (ClassMenu) จาก BindingContext ของ Stepper
-        var menuItem = stepper.BindingContext as ClassMenu;
+        var menuItem = stepper.BindingContext as MenuRecord;
         if (menuItem != null)
         {
             // เผื่อกรณี user ลักเลี่ยง event, ตรวจสอบให้แน่ใจว่ารายการถูกเลือกแล้ว
@@ -121,7 +121,7 @@ public partial class TodayMenuPage : ContentPage
         //---------- ดำเนินการบันทึกข้อมูลการรับประทานอาหารในวันนี้ ----------//
 
         // คัดกรองรายการเมนูที่ถูกเลือกจาก CollectionView
-        var selectedMenus = TodayMenu.SelectedItems.Cast<ClassMenu>().ToList();
+        var selectedMenus = TodayMenu.SelectedItems.Cast<MenuRecord>().ToList();
 
         // ตรวจสอบว่ามีเมนูถูกเลือกอยู่หรือไม่
         if (!selectedMenus.Any())
@@ -130,13 +130,28 @@ public partial class TodayMenuPage : ContentPage
             return;
         }
 
-        // คำนวณพลังงานรวมจากรายการที่ถูกเลือก
-        double totalEnergy = selectedMenus.Sum(menu => menu.Energy * menu.Quantity);
+        // คำนวณพลังงานรวมจากรายการที่ถูกเลือก และจำนวนเมนูทั้งหมด
+        double totalEnergy = 0;
+        float totalProtein = 0, totalCarb = 0, totalFat = 0;
+        int totalQuantity = 0;
+
+        foreach (var menu in selectedMenus)
+        {
+            totalEnergy += menu.Energy * menu.Quantity;
+            totalProtein += menu.Protein * menu.Quantity;
+            totalCarb += menu.Carbohydrates * menu.Quantity;
+            totalFat += menu.Fat * menu.Quantity;
+            totalQuantity += menu.Quantity;
+        }
 
         // สร้าง DailyRecord สำหรับบันทึกในฐานข้อมูล
         DailyRecord dailyRecord = new DailyRecord
         {
-            DailyEnergy = (float)totalEnergy,
+            DailyEnergy = totalEnergy,
+            MenuAmuount = totalQuantity,
+            TotalProtein = totalProtein,
+            TotalCarbohydrates = totalCarb,
+            TotalFat = totalFat,
             DateCreated = DateTime.Now
         };
 
@@ -158,13 +173,17 @@ public partial class TodayMenuPage : ContentPage
     {
         if (string.IsNullOrWhiteSpace(e.NewTextValue))
         {
-            TodayMenu.ItemsSource = new ObservableCollection<ClassMenu>(await App.MenuDatabase.GetAllMenuAsync());
+            FoodMenu = new ObservableCollection<MenuRecord>(await App.MenuDatabase.GetAllMenuAsync());
+            TodayMenu.ItemsSource = FoodMenu;
         }
         else
         {
+            // ดึงรายการที่ค้นหามาแล้วอัปเดตตัวแปร FoodMenu ด้วย
             var filteredMenu = await App.MenuDatabase.SearchMenuAsync(e.NewTextValue);
-            TodayMenu.ItemsSource = new ObservableCollection<ClassMenu>(filteredMenu);
+            FoodMenu = new ObservableCollection<MenuRecord>(filteredMenu);
+            TodayMenu.ItemsSource = FoodMenu;
         }
+        UpdateTotalEnergy();
     }
 
     protected override void OnAppearing()
@@ -175,9 +194,9 @@ public partial class TodayMenuPage : ContentPage
 
     private async void LoadMenu()
     {
-        FoodMenu = new ObservableCollection<ClassMenu>(await App.MenuDatabase.GetAllMenuAsync());
+        FoodMenu = new ObservableCollection<MenuRecord>(await App.MenuDatabase.GetAllMenuAsync());
         TodayMenu.ItemsSource = FoodMenu;
-        OnPropertyChanged(nameof(ClassMenu));
+        OnPropertyChanged(nameof(MenuRecord));
     }
 
 }

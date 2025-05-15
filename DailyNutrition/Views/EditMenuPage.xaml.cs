@@ -11,7 +11,7 @@ public partial class EditMenuPage : ContentPage
     public EditMenuPage()
 	{
 		InitializeComponent();
-        BindingContext = new ClassMenu();
+        BindingContext = new MenuRecord();
     }
 
     private void OnInputChanged(object sender, TextChangedEventArgs e)
@@ -38,7 +38,7 @@ public partial class EditMenuPage : ContentPage
 
     private async void btnSaveMenu_Clicked(object sender, EventArgs e)
     {
-        var saveMenu = (ClassMenu)BindingContext;
+        var saveMenu = (MenuRecord)BindingContext;
 
         // ตรวจสอบชื่อเมนู
         if (string.IsNullOrEmpty(saveMenu.Name))
@@ -66,7 +66,7 @@ public partial class EditMenuPage : ContentPage
 
     private async void btnDeleteMenu_Clicked(object sender, EventArgs e)
     {
-        var deleteMenu = (ClassMenu)BindingContext;
+        var deleteMenu = (MenuRecord)BindingContext;
         await App.MenuDatabase.DeleteMenuAsync(deleteMenu);
 
         App.Current.MainPage = new TabSimplePage();
@@ -76,7 +76,7 @@ public partial class EditMenuPage : ContentPage
     // อัปโหลดรูปภาพ
     private async void UploadImageButton_Clicked(object sender, EventArgs e)
     {
-        var picMenu = (ClassMenu)BindingContext;
+        var picMenu = (MenuRecord)BindingContext;
         try
         {
             var result = await FilePicker.Default.PickAsync(new PickOptions

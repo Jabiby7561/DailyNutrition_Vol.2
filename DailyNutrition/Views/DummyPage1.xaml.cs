@@ -4,11 +4,11 @@ namespace DailyNutrition.Views;
 
 public partial class DummyPage1 : ContentPage
 {
-    ObservableCollection<CalculationRecord> RecordInfo { get; set; }
+    ObservableCollection<UserRecord> RecordInfo { get; set; }
     public DummyPage1()
 	{
 		InitializeComponent();
-        RecordInfo = new ObservableCollection<CalculationRecord>();
+        RecordInfo = new ObservableCollection<UserRecord>();
         ViewsRecord.ItemsSource = RecordInfo;
     }
 
@@ -20,8 +20,8 @@ public partial class DummyPage1 : ContentPage
 
     private async void LoadRecord()
     {
-        RecordInfo = new ObservableCollection<CalculationRecord>(await App.UserDatabase.GetAllRecordAsync());
+        RecordInfo = new ObservableCollection<UserRecord>(await App.UserDatabase.GetAllRecordAsync());
         ViewsRecord.ItemsSource = RecordInfo;
-        OnPropertyChanged(nameof(CalculationRecord));
+        OnPropertyChanged(nameof(UserRecord));
     }
 }

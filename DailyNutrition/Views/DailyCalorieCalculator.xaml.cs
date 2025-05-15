@@ -9,7 +9,7 @@ namespace DailyNutrition
         public DailyCalorieCalculator()
         {
             InitializeComponent();
-            BindingContext = new CalculationRecord();
+            BindingContext = new UserRecord();
         }
 
         // ฟังก์ชันเมื่อกดปุ่มเลือกเพศ
@@ -112,7 +112,7 @@ namespace DailyNutrition
             }
 
             // สร้างรายการข้อมูลใหม่
-            var calculation = new CalculationRecord
+            var calculation = new UserRecord
             {
                 Gender = selectedGender,
                 Weight = weight,

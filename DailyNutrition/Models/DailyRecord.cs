@@ -11,7 +11,11 @@ namespace DailyNutrition.Models
     {
         [PrimaryKey, AutoIncrement]
         public int DateId { get; set; }
-        public float DailyEnergy { get; set; }
+        public float TotalProtein { get; set; }
+        public float TotalCarbohydrates { get; set; }
+        public float TotalFat { get; set; }
+        public double DailyEnergy { get; set; }
+        public int MenuAmuount { get; set; }
         public DateTime DateCreated { get; set; }
     }
 }

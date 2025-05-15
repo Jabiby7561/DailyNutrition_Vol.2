@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Syncfusion.Maui.Core.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace DailyNutrition
@@ -11,6 +12,7 @@ namespace DailyNutrition
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit() // Download CommunityToolkit.Maui
+                .ConfigureSyncfusionCore() // Download Syncfusion.Maui.Core
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

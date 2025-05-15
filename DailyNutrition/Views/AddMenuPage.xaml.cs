@@ -11,7 +11,7 @@ public partial class AddMenuPage : ContentPage
     public AddMenuPage()
     {
         InitializeComponent();
-        BindingContext = new ClassMenu();
+        BindingContext = new MenuRecord();
     }
 
     private void OnInputChanged(object sender, TextChangedEventArgs e)
@@ -39,7 +39,7 @@ public partial class AddMenuPage : ContentPage
     // ปุ่มเพิ่มเมนู
     private async void btnAddMenu_Clicked(object sender, EventArgs e)
     {
-        var newMenu = (ClassMenu)BindingContext;
+        var newMenu = (MenuRecord)BindingContext;
 
         // ตรวจสอบชื่อเมนู
         if (string.IsNullOrEmpty(newMenu.Name))
@@ -68,7 +68,7 @@ public partial class AddMenuPage : ContentPage
     // อัปโหลดรูปภาพ
     private async void UploadImageButton_Clicked(object sender, EventArgs e)
     {
-        var picMenu = (ClassMenu)BindingContext;
+        var picMenu = (MenuRecord)BindingContext;
         try
         {
             var result = await FilePicker.Default.PickAsync(new PickOptions

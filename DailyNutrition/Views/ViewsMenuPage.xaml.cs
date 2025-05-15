@@ -6,11 +6,11 @@ namespace DailyNutrition.Views;
 
 public partial class ViewsMenuPage : ContentPage
 {   
-    ObservableCollection<ClassMenu> FoodMenu { get; set; }
+    ObservableCollection<MenuRecord> FoodMenu { get; set; }
     public ViewsMenuPage()
 	{
 		InitializeComponent();
-        FoodMenu = new ObservableCollection<ClassMenu>();
+        FoodMenu = new ObservableCollection<MenuRecord>();
         ViewsMenu.ItemsSource = FoodMenu;
     }
 
@@ -18,13 +18,27 @@ public partial class ViewsMenuPage : ContentPage
     {
         if (e.CurrentSelection[0] != null)
         {
-            ClassMenu menus = e.CurrentSelection[0] as ClassMenu;
+            MenuRecord menus = e.CurrentSelection[0] as MenuRecord;
             App.Current.MainPage = new NavigationPage(new EditMenuPage()
             //await Navigation.PushAsync(new EditMenuPage()
             {
                 BindingContext = menus
             });
         }
+    }
+
+    private async void MenuSearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(e.NewTextValue))
+        {
+            FoodMenu = new ObservableCollection<MenuRecord>(await App.MenuDatabase.GetAllMenuAsync());
+        }
+        else
+        {
+            var filteredMenu = await App.MenuDatabase.SearchMenuAsync(e.NewTextValue);
+            FoodMenu = new ObservableCollection<MenuRecord>(filteredMenu);
+        }
+        ViewsMenu.ItemsSource = FoodMenu;
     }
 
     protected override void OnAppearing()
@@ -35,28 +49,14 @@ public partial class ViewsMenuPage : ContentPage
 
     private async void LoadMenu()
     {
-        FoodMenu = new ObservableCollection<ClassMenu>(await App.MenuDatabase.GetAllMenuAsync());
+        FoodMenu = new ObservableCollection<MenuRecord>(await App.MenuDatabase.GetAllMenuAsync());
         ViewsMenu.ItemsSource = FoodMenu;
-        OnPropertyChanged(nameof(ClassMenu));
+        OnPropertyChanged(nameof(MenuRecord));
     }
 
     private async void btnAddMenuPage_Clicked(object sender, EventArgs e)
     {
         App.Current.MainPage = new NavigationPage(new AddMenuPage());
         //await Navigation.PushAsync(new AddMenuPage());
-    }
-
-    private async void MenuSearchBar_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        if (string.IsNullOrWhiteSpace(e.NewTextValue))
-        {
-            FoodMenu = new ObservableCollection<ClassMenu>(await App.MenuDatabase.GetAllMenuAsync());
-        }
-        else
-        {
-            var filteredMenu = await App.MenuDatabase.SearchMenuAsync(e.NewTextValue);
-            FoodMenu = new ObservableCollection<ClassMenu>(filteredMenu);
-        }
-        ViewsMenu.ItemsSource = FoodMenu;
     }
 }
