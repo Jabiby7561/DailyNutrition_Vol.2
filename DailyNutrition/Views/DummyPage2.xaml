@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DailyNutrition.Views.DummyPage2"
+             Title="DummyPage2">
+
+    <Grid RowDefinitions="50,*,80"
+          Margin="10">
+        <Label Grid.Row="0"
+               Text="This is Conclude Page"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"
+               Margin="10"/>
+
+        <Border Grid.Row="1"
+                Stroke="Gray"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Margin="5">
+
+            <CollectionView x:Name="ViewsRecord">
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     VerticalItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BackgroundColor="LightGreen"
+                                Stroke="WhiteSmoke"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 10"
+                                Padding="5">
+
+                            <Grid RowDefinitions="*,*,*"
+                                  RowSpacing="5"
+                                  ColumnSpacing="10">
+
+                                <Label Grid.Row="0" 
+                                       Text="{Binding DateId, StringFormat='ลำดับบันทึก : {0} '}"
+                                       FontAttributes="Bold"
+                                       FontSize="14"
+                                       TextColor="#2b2b2b"/>
+
+                                <Label Grid.Row="1" 
+                                       Text="{Binding DailyEnergy, StringFormat='พลังในวันนั้น : {0} cal'}"
+                                       FontSize="14"
+                                       TextColor="#4a4a4a"/>
+
+                                <Label Grid.Row="2" 
+                                       Text="{Binding DateCreated, StringFormat='วันที่บันทึก : {0} '}"   
+                                       FontSize="14"
+                                       TextColor="#4a4a4a"/>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Label Text="ยังไม่มีรายการบันทึก"
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
+                </CollectionView.EmptyView>
+
+            </CollectionView>
+        </Border>
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:DailyNutrition"
+            xmlns:views="clr-namespace:DailyNutrition.Views"
+            xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            x:Class="DailyNutrition.Views.TabSimplePage"
+            Title="TabSimplePage">
+    
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem x:Name="btnProfileSetting"
+                     Clicked="btnProfileSetting_Clicked">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="AwesomeSoild"
+                                 Glyph="&#xf4ff;"
+                                 Size="30"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </TabbedPage.ToolbarItems>
+
+    <!-- หน้าวันนี้กินอะไร -->
+    <NavigationPage Title="วันนี้กินอะไร">
+        <x:Arguments>
+            <views:TodayMenuPage/>
+        </x:Arguments>
+        
+        <NavigationPage.IconImageSource>
+            <FontImageSource FontFamily="AwesomeSoild"
+                             Glyph="&#xe3af;"
+                             Size="30"/>
+        </NavigationPage.IconImageSource>
+    </NavigationPage>
+
+    <!-- หน้าสรุปผล -->
+    <NavigationPage Title="สรุปผล">
+        <x:Arguments>
+            <views:ConcludePage/>
+        </x:Arguments>
+
+        <NavigationPage.IconImageSource>
+            <FontImageSource FontFamily="AwesomeSoild"
+                             Glyph="&#xe0e3;"
+                             Size="30"/>
+        </NavigationPage.IconImageSource>
+    </NavigationPage>
+
+    <!-- หน้าเพิ่มหรือแก้ไขเมนู -->
+    <NavigationPage Title="เพิ่มหรือแก้ไขเมนู">
+        <x:Arguments>
+            <views:ViewsMenuPage/>
+        </x:Arguments>
+
+        <NavigationPage.IconImageSource>
+            <FontImageSource FontFamily="AwesomeSoild"
+                             Glyph="&#xf044;"
+                             Size="30"/>
+        </NavigationPage.IconImageSource>
+    </NavigationPage>
+    
+</TabbedPage>

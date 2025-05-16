@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DailyNutrition.Views.DummyPage1"
+             Title="DummyPage1">
+
+    <Grid RowDefinitions="50,*,80"
+          Margin="10">
+        <Label Grid.Row="0"
+               Text="This is Dummy Page 1"
+               VerticalOptions="Center" 
+               HorizontalOptions="Center"
+               Margin="10"/>
+
+        <Border Grid.Row="1"
+                Stroke="Gray"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Margin="5">
+
+            <CollectionView x:Name="ViewsRecord">
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     VerticalItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BackgroundColor="LightGreen"
+                                Stroke="WhiteSmoke"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 10"
+                                Padding="5">
+
+                            <Grid RowDefinitions="*,*,*,*,*,*,*,*,*"
+                                  RowSpacing="5"
+                                  ColumnSpacing="10">
+
+                                <Label Grid.Row="0" 
+                                       Text="{Binding RecordId, StringFormat='ลำดับบันทึก : {0} '}"
+                                       FontAttributes="Bold"
+                                       FontSize="14"
+                                       TextColor="#2b2b2b"/>
+
+                                <Label Grid.Row="1" 
+                                       Text="{Binding Gender, StringFormat='เพศ : {0} '}"
+                                       FontSize="14"
+                                       TextColor="#4a4a4a"/>
+
+                                <Label Grid.Row="2" 
+                                       Text="{Binding Weight, StringFormat='น้ำหนัก : {0:F2} kg'}"
+                                       FontSize="14"
+                                       TextColor="#4a4a4a"/>
+
+                                <Label Grid.Row="3" 
+                                       Text="{Binding Height, StringFormat='ส่วนสูง : {0:F2} cm'}"   
+                                       FontSize="14"
+                                       TextColor="#4a4a4a"/>
+
+                                <Label Grid.Row="4" 
+                                       Text="{Binding Age, StringFormat='อายุ : {0} ปี'}"   
+                                       FontSize="14"
+                                       TextColor="#4a4a4a"/>
+
+                                <Label Grid.Row="5" 
+                                       Text="{Binding BMR, StringFormat='BMR : {0:F2} kcal'}"
+                                       FontSize="14"
+                                       TextColor="#2b2b2b"/>
+
+                                <Label Grid.Row="6" 
+                                       Text="{Binding TDEE, StringFormat='TDEE : {0:F2} kcal'}"
+                                       FontSize="14"
+                                       TextColor="#4a4a4a"/>
+
+                                <Label Grid.Row="7" 
+                                       Text="{Binding ActivityLevel, StringFormat='กิจกรรมที่ทำ : {0} '}"
+                                       FontSize="14"
+                                       TextColor="#4a4a4a"/>
+
+                                <Label Grid.Row="8" 
+                                       Text="{Binding RecordCreated, StringFormat='วันที่บันทึก : {0} '}"   
+                                       FontSize="14"
+                                       TextColor="#4a4a4a"/>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Label Text="ยังไม่มีรายการบันทึก"
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
+                </CollectionView.EmptyView>
+
+            </CollectionView>
+        </Border>
+
+    </Grid>
+
+</ContentPage>

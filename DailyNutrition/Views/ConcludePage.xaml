@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:local="clr-namespace:DailyNutrition.Models"
+             x:Class="DailyNutrition.Views.ConcludePage"
+             Title="สรุปผล">
+
+    <Grid RowDefinitions="50,*,40,40,40,40"
+          Margin="10">
+
+        <Label Grid.Row="0"
+               Text="สรุปรายสัปดาห์"
+               FontAttributes="Bold"
+               FontSize="18"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Margin="10"/>
+
+        <Border Grid.Row="1"
+                Stroke="Gray"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 10"
+                Margin="5">
+            
+            <chart:SfCartesianChart x:Name="MonthlyChartView"
+                                    Margin="5">
+
+                <!--<chart:SfCartesianChart.BindingContext>
+                    <local:ViewData/>
+                </chart:SfCartesianChart.BindingContext>-->
+
+                <chart:ColumnSeries x:Name="WeeklyChartView" 
+                                    ItemsSource="{Binding DailyView}"
+                                    XBindingPath="DateLabel"
+                                    YBindingPath="DailyEnergy"
+                                    ShowDataLabels="True"
+                                    EnableTooltip="True"/>
+                
+                <chart:SfCartesianChart.XAxes>
+                    <chart:CategoryAxis>
+                        <chart:CategoryAxis.Title>
+                            <chart:ChartAxisTitle Text="วันที่ในสัปดาห์" />
+                        </chart:CategoryAxis.Title>
+                    </chart:CategoryAxis>
+                </chart:SfCartesianChart.XAxes>
+
+                <chart:SfCartesianChart.YAxes>
+                    <chart:NumericalAxis>
+                        <chart:NumericalAxis.Title>
+                            <chart:ChartAxisTitle Text="พลังงาน(cal)" />
+                        </chart:NumericalAxis.Title>
+                    </chart:NumericalAxis>
+                </chart:SfCartesianChart.YAxes>
+
+            </chart:SfCartesianChart>
+        </Border>
+
+        <!-- สรุปผลลัพธ์พลังงานที่ได้รับในเดือนนี้ -->
+        <Label x:Name="AvgProteinLabel"
+               Grid.Row="2"
+               Text="ค่าเฉลี่ยโปรตีนที่ได้รับ : 0 cal"
+               FontSize="18"
+               HorizontalOptions="Start"
+               VerticalOptions="Center"
+               Margin="10"/>
+
+        <Label x:Name="AvgCarbohydratesLabel"
+               Grid.Row="3"
+               Text="ค่าเฉลี่ยคาร์โบไฮเดรตที่ได้รับ : 0 cal"
+               FontSize="18"
+               HorizontalOptions="Start"
+               VerticalOptions="Center"
+               Margin="10"/>
+
+        <Label x:Name="AvgFatLabel"
+               Grid.Row="4"
+               Text="ค่าเฉลี่ยไขมันที่ได้รับ : 0 cal"
+               FontSize="18"
+               HorizontalOptions="Start"
+               VerticalOptions="Center"
+               Margin="10"/>
+
+        <Label x:Name="AvgRequiredEnergyLabel"
+               Grid.Row="5"
+               Text="ค่าเฉลี่ยพลังงานที่ร่างกายได้รับ : 0 cal"
+               FontSize="18"
+               HorizontalOptions="Start"
+               VerticalOptions="Center"
+               Margin="10"/>
+
+    </Grid>
+    
+</ContentPage>
