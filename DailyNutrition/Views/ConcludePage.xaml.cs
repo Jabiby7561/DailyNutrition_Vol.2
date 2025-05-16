@@ -37,6 +37,15 @@ public partial class ConcludePage : ContentPage
             .Where(m => m.DateCreated.Date >= startOfWeek && m.DateCreated.Date <= endOfWeek)
             .ToList();
 
+        // ตรวจสอบว่าครบ 7 วันหรือยัง
+        if (thisWeekMenus.Count >= 7)
+        {
+            await DisplayAlert(
+                "ครบสัปดาห์แล้ว",
+                "บันทึกข้อมูลครบ 7 ครั้งแล้ว อย่าลืมอัปเดตค่าการบริโภคแคลอรี่ของร่างกายในหน้าตั้งค่าด้วยละ",
+                "ตกลง");
+        }
+
         float totalProtein = 0, totalCarb = 0, totalFat = 0, totalEnergy = 0;
         int totalQuantity = 0;
 

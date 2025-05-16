@@ -40,6 +40,12 @@ namespace DailyNutrition.Database
             return await _database.InsertAsync(daily);
         }
 
+        public async Task<int> DeleteDateAsync()
+        {
+            await Init(); // ตรวจสอบว่าฐานข้อมูลถูกตั้งค่าแล้ว
+            return await _database.DeleteAllAsync<DailyRecord>();
+        }
+
     }
 }
 

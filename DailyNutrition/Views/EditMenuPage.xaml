@@ -36,6 +36,7 @@
                Aspect="AspectFill" />
         <Button Text="อัปโหลดรูปอาหาร" 
                 Margin="20"
+                CornerRadius="20"
                 Clicked="UploadImageButton_Clicked" />
         
         <!-- ฟิลด์กรอกข้อมูล -->
@@ -81,8 +82,10 @@
             <!-- ปุ่มแก้ไขเมนู -->
             <Button x:Name="btnSaveMenu"
                     Text="บันทึก"
+                    BackgroundColor="#34C759"
                     Margin="20"
                     WidthRequest="100"
+                    CornerRadius="20"
                     Clicked="btnSaveMenu_Clicked" />
             <!-- ปุ่มแก้ไขเมนู -->
             <Button x:Name="btnDeleteMenu" 
@@ -90,6 +93,7 @@
                     BackgroundColor="Red"
                     Margin="20"
                     WidthRequest="100"
+                    CornerRadius="20"
                     Clicked="btnDeleteMenu_Clicked" />
             
         </HorizontalStackLayout>

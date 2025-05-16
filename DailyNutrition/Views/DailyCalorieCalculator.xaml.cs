@@ -1,4 +1,5 @@
 ﻿using DailyNutrition.Views;
+using Microsoft.Maui.Storage;
 using System;
 
 namespace DailyNutrition
@@ -125,7 +126,11 @@ namespace DailyNutrition
             };
 
             // บันทึกลงฐานข้อมูล
-            await App.UserDatabase.AddCalculationAsync(calculation);
+            await App.UserDatabase.AddRecordAsync(calculation);
+            // ลบข้อมูลในตาราง DailyRecord เพื่อล้างกราฟ
+            await App.DailyDatabase.DeleteDateAsync();
+
+
             await DisplayAlert("สำเร็จ", "บันทึกข้อมูลสำเร็จ!", "ตกลง");
 
             App.Current.MainPage = new TabSimplePage();

@@ -109,7 +109,7 @@ public partial class TodayMenuPage : ContentPage
         // ถ้าไม่มี record หรือตัว TDEE เป็น 0 ให้แจ้งเตือนและนำผู้ใช้ไปกรอกข้อมูลในหน้า DailyCalorieCalculator
         if (latestCalculation == null || latestCalculation.TDEE == 0)
         {
-            await DisplayAlert("ข้อมูลไม่ครบ!", "กรุณาไปบันทึกค่าคำนวณพลังงานที่ร่างกายต้องการในหน้าตั้งค่าก่อน", "ตกลง");
+            await DisplayAlert("ข้อมูลไม่ครบ!", "กรุณาไปบันทึกค่าการบริโภคแคลอรี่ของร่างกายในหน้าตั้งค่าก่อน", "ตกลง");
         }
         else
         {

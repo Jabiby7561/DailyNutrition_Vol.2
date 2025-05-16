@@ -41,7 +41,7 @@ namespace DailyNutrition.Database
         }
 
         // เพิ่มบันทึกข้อมูลผู้ใช้ลงในฐานข้อมูล
-        public async Task<int> AddCalculationAsync(UserRecord record)
+        public async Task<int> AddRecordAsync(UserRecord record)
         {
             await Init(); // ตรวจสอบว่าฐานข้อมูลพร้อมใช้งาน
             return await _database.InsertAsync(record);
