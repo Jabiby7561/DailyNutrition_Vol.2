@@ -18,5 +18,6 @@ namespace DailyNutrition.Models
         public int MenuAmuount { get; set; }
         public DateTime DateCreated { get; set; }
         public string DateLabel { get; set; }
+        public int UserRecordId { get; set; }
     }
 }

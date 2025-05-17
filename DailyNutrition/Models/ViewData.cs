@@ -19,8 +19,17 @@ namespace DailyNutrition.Models
         public async Task LoadDataAsync()
         {
             var allRecords = await App.DailyDatabase.GetAllDateAsync();
-            if (allRecords == null || allRecords.Count == 0)
+            var latestUser = await App.UserDatabase.GetLatestRecordAsync();
+
+            if (allRecords == null || latestUser == null)
+            {
+                DailyView = new List<DailyRecord>();
                 return;
+            }
+
+            //var allRecords = await App.DailyDatabase.GetAllDateAsync();
+            //if (allRecords == null || allRecords.Count == 0)
+            //    return;
 
             //var latestDate = allRecords.Max(r => r.DateCreated);
             //var startOfWeek = latestDate.Date.AddDays(-6);
@@ -32,9 +41,10 @@ namespace DailyNutrition.Models
 
             // เรียงตามวันที่ล่าสุด -> เก่าสุด แล้วเลือก 5 รายการล่าสุด
             var latestRecords = allRecords
+                .Where(r => r.UserRecordId == latestUser.RecordId)
                 .OrderByDescending(r => r.DateCreated)
                 .Take(7)
-                .OrderBy(r => r.DateCreated) // เรียงกลับมาเป็น เก่า -> ใหม่
+                .OrderBy(r => r.DateCreated)
                 .ToList();
 
             foreach (var record in latestRecords) //recentRecords

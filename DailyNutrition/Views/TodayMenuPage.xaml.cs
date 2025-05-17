@@ -152,7 +152,8 @@ public partial class TodayMenuPage : ContentPage
             TotalProtein = totalProtein,
             TotalCarbohydrates = totalCarb,
             TotalFat = totalFat,
-            DateCreated = DateTime.Now
+            DateCreated = DateTime.Now,
+            UserRecordId = latestCalculation.RecordId,
         };
 
         try
