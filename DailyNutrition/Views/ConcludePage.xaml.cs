@@ -26,6 +26,7 @@ public partial class ConcludePage : ContentPage
     private async void LoadRecord()
     {
         var allMenuHistory = await App.DailyDatabase.GetAllDateAsync();
+        var latestUser = await App.UserDatabase.GetLatestRecordAsync();
 
         var today = DateTime.Today;
         // คำนวณจุดเริ่มต้นของสัปดาห์ (จันทร์-อาทิตย์)
@@ -34,16 +35,34 @@ public partial class ConcludePage : ContentPage
         var endOfWeek = startOfWeek.AddDays(6);
 
         var thisWeekMenus = allMenuHistory
-            .Where(m => m.DateCreated.Date >= startOfWeek && m.DateCreated.Date <= endOfWeek)
+            .Where(m =>
+                m.UserRecordId == latestUser.RecordId &&
+                m.DateCreated.Date >= startOfWeek &&
+                m.DateCreated.Date <= endOfWeek)
             .ToList();
+
+        if (thisWeekMenus.Count == 0)
+        {
+            AvgProteinLabel.Text = "ค่าเฉลี่ยโปรตีนที่ได้รับ : 0 cal";
+            AvgCarbohydratesLabel.Text = "ค่าเฉลี่ยคาร์โบไฮเดรตที่ได้รับ : 0 cal";
+            AvgFatLabel.Text = "ค่าเฉลี่ยไขมันที่ได้รับ : 0 cal";
+            AvgRequiredEnergyLabel.Text = "ค่าเฉลี่ยพลังงานที่ร่างกายได้รับ : 0 cal";
+            return;
+        }
 
         // ตรวจสอบว่าครบ 7 วันหรือยัง
         if (thisWeekMenus.Count >= 7)
         {
-            await DisplayAlert(
-                "ครบสัปดาห์แล้ว",
-                "บันทึกข้อมูลครบ 7 ครั้งแล้ว อย่าลืมอัปเดตค่าการบริโภคแคลอรี่ของร่างกายในหน้าตั้งค่าด้วยละ",
-                "ตกลง");
+            var latestLogDate = thisWeekMenus.Max(x => x.DateCreated);
+
+            if (latestUser != null && latestUser.RecordCreated <= latestLogDate)
+            {
+                // แสดงเตือนแค่ถ้าผู้ใช้ยังไม่ได้อัปเดตหลังจากกรอกครบ 7 วัน
+                await DisplayAlert(
+                    "ครบสัปดาห์แล้ว",
+                    "บันทึกข้อมูลครบ 7 ครั้งแล้ว อย่าลืมอัปเดตค่าการบริโภคแคลอรี่ของร่างกายในหน้าตั้งค่าด้วยละ",
+                    "ตกลง");
+            }
         }
 
         float totalProtein = 0, totalCarb = 0, totalFat = 0, totalEnergy = 0;

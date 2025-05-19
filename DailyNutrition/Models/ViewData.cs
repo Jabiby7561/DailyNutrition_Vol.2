@@ -27,18 +27,6 @@ namespace DailyNutrition.Models
                 return;
             }
 
-            //var allRecords = await App.DailyDatabase.GetAllDateAsync();
-            //if (allRecords == null || allRecords.Count == 0)
-            //    return;
-
-            //var latestDate = allRecords.Max(r => r.DateCreated);
-            //var startOfWeek = latestDate.Date.AddDays(-6);
-
-            //var recentRecords = allRecords
-            //    .Where(r => r.DateCreated.Date >= startOfWeek && r.DateCreated.Date <= latestDate.Date)
-            //    .OrderBy(r => r.DateCreated)
-            //    .ToList();
-
             // เรียงตามวันที่ล่าสุด -> เก่าสุด แล้วเลือก 5 รายการล่าสุด
             var latestRecords = allRecords
                 .Where(r => r.UserRecordId == latestUser.RecordId)
